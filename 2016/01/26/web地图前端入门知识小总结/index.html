@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>web地图前端入门知识小总结 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="神奇的转入与地图相关的工作，总结下最基础的行业知识；主要是怕我自己忘了，另外也不知道以后还会不会用到～ 内容包括墨卡托投影，墨卡托坐标与经纬度坐标之间的转换，以及常用的地图坐标之间的转换">
+<meta name="keywords" content="web地图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web地图前端入门知识小总结">
+<meta property="og:url" content="http://lucyhao.com/2016/01/26/web地图前端入门知识小总结/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="神奇的转入与地图相关的工作，总结下最基础的行业知识；主要是怕我自己忘了，另外也不知道以后还会不会用到～ 内容包括墨卡托投影，墨卡托坐标与经纬度坐标之间的转换，以及常用的地图坐标之间的转换">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web地图前端入门知识小总结">
+<meta name="twitter:description" content="神奇的转入与地图相关的工作，总结下最基础的行业知识；主要是怕我自己忘了，另外也不知道以后还会不会用到～ 内容包括墨卡托投影，墨卡托坐标与经纬度坐标之间的转换，以及常用的地图坐标之间的转换">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-web地图前端入门知识小总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      web地图前端入门知识小总结
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/01/26/web地图前端入门知识小总结/">
+      <time datetime="2016-01-26T05:26:55.000Z" itemprop="datePublished">2016-01-26</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>神奇的转入与地图相关的工作，总结下最基础的行业知识；主要是怕我自己忘了，另外也不知道以后还会不会用到～ 内容包括墨卡托投影，墨卡托坐标与经纬度坐标之间的转换，以及常用的地图坐标之间的转换</p>
+</blockquote>
+<a id="more"></a> 
+<h3 id="web墨卡托投影"><a href="#web墨卡托投影" class="headerlink" title="web墨卡托投影"></a>web墨卡托投影</h3><h5 id="什么是墨卡托投影？"><a href="#什么是墨卡托投影？" class="headerlink" title="什么是墨卡托投影？"></a>什么是墨卡托投影？</h5><blockquote>
+<p>墨卡托(Mercator)投影，又名“等角正轴圆柱投影”，荷兰地图学家墨卡托（Mercator）在1569年拟定，假设地球被围在一个中空的圆柱里，其赤道与圆柱相接触，然后再假想地球中心有一盏灯，把球面上的图形投影到圆柱体上，再把圆柱体展开，这就是一幅标准纬线为零度（即赤道）的“墨卡托投影”绘制出的世界地图。</p>
+</blockquote>
+<p>上面摘自网络，稍微运用下你的空间想象力，就能想象出这个投影的过程。</p>
+<h5 id="Web墨卡托投影坐标系"><a href="#Web墨卡托投影坐标系" class="headerlink" title="Web墨卡托投影坐标系"></a>Web墨卡托投影坐标系</h5><p>以整个世界范围，赤道作为标准纬线，本初子午线作为中央经线，两者交点为坐标原点，向东向北为正，向西向南为负。 </p>
+<p>X轴：由于赤道半径为6378137米，则赤道周长为2<em>PI</em>r = 20037508.3427892，因此X轴的取值范围：[-20037508.3427892,20037508.3427892]。 </p>
+<p>y轴：本来纬度接近90度的时候，y轴是接近无限，但是为了在web上好计算，y轴的取值范围也定为了[-20037508.3427892,20037508.3427892]</p>
+<p>由上面的x轴和y轴的取值范围，反计算得到经纬度的取值范围为： </p>
+<p>经度： [-180,180]</p>
+<p>纬度： [-85.05112877980659，85.05112877980659]</p>
+<p>是的，纬度没有达到90度，反正web上的地图，人们也不关心高纬度的情况，去到南极或者北极的时候，请使用专业地图。</p>
+<h5 id="墨卡托坐标到经纬度坐标的转换-javascript"><a href="#墨卡托坐标到经纬度坐标的转换-javascript" class="headerlink" title="墨卡托坐标到经纬度坐标的转换 javascript"></a>墨卡托坐标到经纬度坐标的转换 javascript</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//墨卡托坐标转经纬度</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mercator2lonLat</span>(<span class="params">mercatorX,mercatorY</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x=mercatorX/<span class="number">20037508.34</span>*<span class="number">180</span>;</span><br><span class="line">  <span class="keyword">var</span> y=mercatorY/<span class="number">20037508.34</span>*<span class="number">180</span>;</span><br><span class="line">  y= <span class="number">180</span>/<span class="built_in">Math</span>.PI*(<span class="number">2</span>*<span class="built_in">Math</span>.atan(<span class="built_in">Math</span>.exp(y*<span class="built_in">Math</span>.PI/<span class="number">180</span>))-<span class="built_in">Math</span>.PI/<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">return</span> [x,y];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//经纬度转墨卡托</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lonLat2mercator</span>(<span class="params">lon, lat</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = (lon/<span class="number">180</span>) * <span class="number">20037508.34</span>;</span><br><span class="line">    <span class="keyword">var</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(lat &gt; <span class="number">85.05112</span>)&#123; tmp = <span class="number">85.05112</span>;&#125;</span><br><span class="line">    <span class="keyword">if</span>(lat &lt; <span class="number">-85.05112</span>)&#123; tmp = <span class="number">-85.05112</span>;&#125;</span><br><span class="line">    tmp = (<span class="built_in">Math</span>.PI / <span class="number">180.0</span>) * tmp;</span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">20037508.34</span> * <span class="built_in">Math</span>.log(<span class="built_in">Math</span>.tan(<span class="built_in">Math</span>.PI / <span class="number">4.0</span> + tmp / <span class="number">2.0</span>)) / <span class="built_in">Math</span>.PI;</span><br><span class="line">    <span class="keyword">return</span> [x,y];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有时候，前端获取到的坐标并不是标准的经纬度，可能是墨卡托坐标(因为后台程序用墨卡托可以直接加减运算，方便)。所以在使用的时候，如果经度不在［-180,180］之间，纬度简单判断不在[-90,90]之间，并且数据还很大的可以认为有可能是墨卡托，需要做一下转换。</p>
+<h3 id="百度、腾讯、高德的坐标体系"><a href="#百度、腾讯、高德的坐标体系" class="headerlink" title="百度、腾讯、高德的坐标体系"></a>百度、腾讯、高德的坐标体系</h3><p>各家使用的坐标都是经过一些偏移的，然后国内因为一些保密原因，国内的地图是不让使用GPS坐标的。不过高德，腾讯使用的是一个坐标系，百度是另外一个。所以同一个经纬度在每家地图上的位置可能会有一些偏差，那怎么办？就好像做搜索，需要看别家搜索的质量。做地图，也需要知道别家的数据。</p>
+<ul>
+<li>腾讯开放平台提供的坐标转换：<a href="http://lbs.qq.com/webservice_v1/guide-convert.html" target="_blank" rel="noopener">http://lbs.qq.com/webservice_v1/guide-convert.html</a></li>
+</ul>
+<p>​        可以得到GPS坐标、百度经纬度等</p>
+<ul>
+<li><p>百度开放平台提供的坐标转换：<a href="http://lbsyun.baidu.com/index.php?title=webapi/guide/changeposition" target="_blank" rel="noopener">http://lbsyun.baidu.com/index.php?title=webapi/guide/changeposition</a></p>
+<p>可以得到的坐标要多一些，aliyun地图就是高德地图啦，腾讯，google，高德的地图的坐标系都是一样的</p>
+</li>
+<li><p>高德的，实在没找到，囧～个人觉得高德的开放平台那个web页实在是有点不好找，交互和UI实在有点小乱</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/01/26/web地图前端入门知识小总结/" data-id="cjhbpfqur000i0x1p22ltqofr" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/01/26/web地图前端入门知识小总结/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web地图/">web地图</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/01/ngnix配置静态资源404问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          ngnix配置静态资源404问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/14/利用gulp实现前端代码的合并压缩/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">利用gulp实现前端代码的合并压缩</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

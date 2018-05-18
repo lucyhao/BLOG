@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Rollup是什么 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="把Rollup的官方文档看完，我的第一反应是？what? So? 这到底有什么用？这些事情Webpack不都已经做了吗？(webpack2 增加了tree shaking，tree shaking概念其实是Rollup提出的，所以其实Rollup出来的时候，可能写与webpack的区别还能多写好几百字) Rollup是什么？它也是模块打包工具，类似于webpack。 安装12$ npm insta">
+<meta name="keywords" content="Rollup,javascript,打包工具,node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rollup是什么">
+<meta property="og:url" content="http://lucyhao.com/2017/04/22/Rollup是什么/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="把Rollup的官方文档看完，我的第一反应是？what? So? 这到底有什么用？这些事情Webpack不都已经做了吗？(webpack2 增加了tree shaking，tree shaking概念其实是Rollup提出的，所以其实Rollup出来的时候，可能写与webpack的区别还能多写好几百字) Rollup是什么？它也是模块打包工具，类似于webpack。 安装12$ npm insta">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rollup是什么">
+<meta name="twitter:description" content="把Rollup的官方文档看完，我的第一反应是？what? So? 这到底有什么用？这些事情Webpack不都已经做了吗？(webpack2 增加了tree shaking，tree shaking概念其实是Rollup提出的，所以其实Rollup出来的时候，可能写与webpack的区别还能多写好几百字) Rollup是什么？它也是模块打包工具，类似于webpack。 安装12$ npm insta">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-Rollup是什么" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Rollup是什么
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/04/22/Rollup是什么/">
+      <time datetime="2017-04-22T03:14:04.000Z" itemprop="datePublished">2017-04-22</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>把<a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a>的官方文档看完，我的第一反应是？what? So? 这到底有什么用？这些事情Webpack不都已经做了吗？(webpack2 增加了tree shaking，tree shaking概念其实是Rollup提出的，所以其实Rollup出来的时候，可能写与webpack的区别还能多写好几百字)</p>
+<p>Rollup是什么？它也是模块打包工具，类似于webpack。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install --global rollup   #全局安装</span><br><span class="line"><span class="meta">$</span> npm install --save-dev rollup  #or `npm i -D rollup` 项目级别安装</span><br></pre></td></tr></table></figure>
+<p>—save-dev说明它与webpack一样只在项目开发，构建阶段使用。不是线上跑的项目所必需的。</p>
+<h4 id="配置-rollup-config-js"><a href="#配置-rollup-config-js" class="headerlink" title="配置 rollup.config.js"></a>配置 rollup.config.js</h4><p>与webpack一样，rollup可以有配置文件，也没有不用配置文件，直接使用命令行CLI还执行也是可以的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rollup main.js --format cjs</span><br></pre></td></tr></table></figure>
+<p>—format 表示我们需要把main.js按照什么标准来执行，这里—format cjs表示用CommonJS. 因为这个命令没有指定目标文件。所以会在控制台直接把main.js打包成CommonJS的标准打印出来。</p>
+<p>回到配置文件上，rollup的配置文件如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  entry : <span class="string">'src/main.js'</span>,</span><br><span class="line">  format : <span class="string">'cjs'</span>,</span><br><span class="line">  dest : <span class="string">'bundle.js'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rollup -c   # rollup --config  打包的文件会输出到bundle.js</span><br><span class="line"><span class="meta">$</span> rollup -c -o bundle-2.js   #可以替换config中的输出文件配置，表示输出到bundle-2.js中</span><br></pre></td></tr></table></figure>
+<p><em>因为是rollup运行config.js文件，所以我们可以使用export default这种表示方法，而不需要引入类似Babel这样的东西。所以你可以在配置文件使用你的Node运行支持的es2015的特性</em></p>
+<p>可以配置不同的rollup的配置文件，比如开发环境的，生产环境的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> rollup --config rollup.config.dev.js</span><br><span class="line"><span class="meta">$</span> rollup --config rollup.config.prod.js</span><br></pre></td></tr></table></figure>
+<h4 id="配置package-json"><a href="#配置package-json" class="headerlink" title="配置package.json"></a>配置package.json</h4><p>与webpack一样，可以通过在package.json中配置scripts脚本最后通过npm来执行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"rollup -c"</span>,</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"rollup -c -w"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="配置插件plugins"><a href="#配置插件plugins" class="headerlink" title="配置插件plugins"></a>配置插件plugins</h4><p>官方文档中介绍了几个插件rollup-plugin-json, rollup-plugin-node-resolve，rollup-plugin-babel。主要说下rollup-plugin-node-resolve。这个插件让rollup认识外部的modules。也就是说，如果不加这个插件，在js文件中如果引用node_modules中的插件， rollup是不认识的。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install --save the-answer # or `npm i -S the-answer`</span><br></pre></td></tr></table></figure>
+<p>安装了 the-answer组件，然后在js文件中引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> answer <span class="keyword">from</span> <span class="string">'the-answer'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'the answer is '</span> + answer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm run build</span><br></pre></td></tr></table></figure>
+<p>rollup会给出一个warning.</p>
+<blockquote>
+<p>‘the-answer’ is imported by src/main.js, but could not be resolved - treating</p>
+</blockquote>
+<p>如果要认识这些外部的组件，就需要引入plugin组件。在配置rollup.config.js中增加这样的配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//rollup.config.js</span></span><br><span class="line"><span class="keyword">import</span> resolve <span class="keyword">from</span> <span class="string">'rollup-plugin-node-resolve'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  entry : <span class="string">'src/main.js'</span>,</span><br><span class="line">  format : <span class="string">'cjs'</span>,</span><br><span class="line">  plugins : [ resolve() ],</span><br><span class="line">  dest : <span class="string">'bundle.js'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这样，运行npm run build 就不会有报错啦～</p>
+<h4 id="一个完整的rollup打包的例子"><a href="#一个完整的rollup打包的例子" class="headerlink" title="一个完整的rollup打包的例子"></a>一个完整的rollup打包的例子</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rollup-demo</span><br><span class="line">	&gt; src</span><br><span class="line">	  	foo.js</span><br><span class="line">        main.js</span><br><span class="line">      bundle.js</span><br><span class="line">      rollup.config.js</span><br></pre></td></tr></table></figure>
+<p>上面没有带package.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/foo.js</span></span><br><span class="line"><span class="comment">// This function isn't used anywhere</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// This function gets included</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// src/main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;cube&#125; <span class="keyword">from</span> <span class="string">'./foo.js'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">5</span>)); <span class="comment">// 125</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// rollup.config.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  entry: <span class="string">'src/main.js'</span>,</span><br><span class="line">  format: <span class="string">'cjs'</span>,</span><br><span class="line">  dest: <span class="string">'bundle.js'</span> <span class="comment">// equivalent to --output</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行rollup -c 打包出来以后，bundle.js。可以看到bundle.js中对于import没有引用的代码是没有打包进去的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="comment">// This function isn't used anywhere</span></span><br><span class="line"><span class="comment">// This function gets included</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cube</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(cube(<span class="number">5</span>)); <span class="comment">// 125</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>到这里是不是都觉得rollup除了打包出来的代码简单，可以理解以外，好像没有什么东西了，连node_modules中的组件都还要引入一个插件才能理解。所以看官方文档不如看这篇文章<a href="https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80" target="_blank" rel="noopener">Tree-shaking versus dead code elimination</a>，这篇文章中不仅解释了tree shaking ,还对rollup进行了很多解释。其中我觉得最有意义的就是：</p>
+<ul>
+<li>Rollup不完美，最好的结果也许是这样的步骤，例如 Rollup -&gt; UglifyJS / 带Uglify插件的Webpack 2  （这也是我为什么觉得如果说webpack做了1，2，3个事情的话，Rollup就做了事情1）</li>
+<li>Rollup的目标是生产最有效（看起来就像人写的一样）的bundle,  Tree shaking 只是其中的一部分，Rollup还做了很多事（准确的说，是没有做）——没在函数中加入modules，没有把module的加载器引入到bundle的最顶部，尽量保持原代码。因为这些，所以如果是写库，用Rollup是一个很好的选择（当然Rollup也可以为apps使用，虽然Webpack比Rollupd多了很多特性，但是YMMV——选择一种新的方法也许会有意外收获哦，特别是对那些基本没有非ES6依赖的app）</li>
+</ul>
+<p>所以你会考虑用Rollup吗？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2017/04/22/Rollup是什么/" data-id="cjhbpfqud00020x1p6ynt7sli" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2017/04/22/Rollup是什么/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rollup/">Rollup</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/打包工具/">打包工具</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/12/React docs  V15.6.1 快速上手纪要/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          React docs  V15.6.1 快速上手纪要
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/19/webpack2 vs webpack1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">webpack2 vs webpack1</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

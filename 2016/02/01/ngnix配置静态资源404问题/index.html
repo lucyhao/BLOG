@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ngnix配置静态资源404问题 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简单介绍了ngnix的location的配置和反向代理的配置。配置ngnix反向代理，也是一种解决前端跨域访问的方法。另外还介绍了在实际使用中，由于配置其他服务的反向代理，导致静态资源获取404的问题总结。">
+<meta name="keywords" content="ngnix配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ngnix配置静态资源404问题">
+<meta property="og:url" content="http://lucyhao.com/2016/02/01/ngnix配置静态资源404问题/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="简单介绍了ngnix的location的配置和反向代理的配置。配置ngnix反向代理，也是一种解决前端跨域访问的方法。另外还介绍了在实际使用中，由于配置其他服务的反向代理，导致静态资源获取404的问题总结。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ngnix配置静态资源404问题">
+<meta name="twitter:description" content="简单介绍了ngnix的location的配置和反向代理的配置。配置ngnix反向代理，也是一种解决前端跨域访问的方法。另外还介绍了在实际使用中，由于配置其他服务的反向代理，导致静态资源获取404的问题总结。">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-ngnix配置静态资源404问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ngnix配置静态资源404问题
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/02/01/ngnix配置静态资源404问题/">
+      <time datetime="2016-02-01T06:58:51.000Z" itemprop="datePublished">2016-02-01</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/运维/">运维</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>简单介绍了ngnix的location的配置和反向代理的配置。配置ngnix反向代理，也是一种解决前端跨域访问的方法。另外还介绍了在实际使用中，由于配置其他服务的反向代理，导致静态资源获取404的问题总结。</p>
+<a id="more"></a> 
+<p>ngnix反向代理解决浏览器跨域、location加快静态资源的请求    </p>
+<h4 id="location的配置"><a href="#location的配置" class="headerlink" title="location的配置"></a>location的配置</h4><p> 设置location是为了对请求的url 做一些特殊的操作，比如对静态文件做缓存等。</p>
+<p>官方的文档见：<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#location" target="_blank" rel="noopener">http://nginx.org/en/docs/http/ngx_http_core_module.html#location</a></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Syntax:	location [ = | ~ | ~* | ^~ ] uri &#123; ... &#125;</span><br><span class="line">location @name &#123; ... &#125;</span><br><span class="line">Default:	—</span><br><span class="line">Context:	server, location</span><br></pre></td></tr></table></figure>
+<ul>
+<li>＝ 匹配表示是精确匹配</li>
+</ul>
+<ul>
+<li>～ 匹配表示 区分大小写的正则匹配</li>
+</ul>
+<ul>
+<li>～＊ 匹配表示 不区分大小写的正则匹配</li>
+</ul>
+<ul>
+<li>^~ 以后面的字符串开头的匹配</li>
+</ul>
+<p>下面是一些常用的location的写法：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> /documents/ &#123;</span><br><span class="line">  <span class="comment"># 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索</span></span><br><span class="line">  [ configuration C ] </span><br><span class="line">&#125;</span><br><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /documents/ &#123;</span><br><span class="line">  <span class="comment"># 匹配任何以 /documents/ 开头的地址，匹配符合以后，停止往下搜索</span></span><br><span class="line">  [ configuration D ] </span><br><span class="line">&#125;</span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~* \.(gif|jpg|jpeg)$</span> &#123;</span><br><span class="line">  <span class="comment"># 匹配所有以 gif,jpg或jpeg 结尾的请求</span></span><br><span class="line">  [ configuration E ] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h4><p>从wiki上摘录的定义： </p>
+<blockquote>
+<p>在计算机网络中，反向代理是代理服务器的一种。它根据客户端的请求，从后端的服务器上获取资源，然后再将这些资源返回给客户端。与前向代理不同，前向代理作为一个媒介将互联网上获取的资源返回给相关联的客户端，而反向代理是在服务器端作为代理使用，而不是客户端。</p>
+</blockquote>
+<p>ngnix做反向代理简单配置如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">... </span><br><span class="line"><span class="attribute">upstream</span> multi_relation &#123;</span><br><span class="line">    <span class="comment"># 在ngnix这个机器的20000端口上启动的服务</span></span><br><span class="line">	<span class="attribute">server</span> <span class="number">127.0.0.1:20000</span> weight=<span class="number">1</span> max_fails=<span class="number">5</span> fail_timeout=<span class="number">6s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line">    <span class="attribute">root</span> /www;</span><br><span class="line">    <span class="attribute">index</span> index.php index.html index.htm;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attribute">location</span> /relation/ &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://multi_relation;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> /area/ &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://10.1.0.1:8080/;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>浏览器中输入<a href="http://ip:8080/realtion/" target="_blank" rel="noopener">http://ip:8080/realtion/</a> 访问的就是ngnix这台机器上端口为20000的这个服务；</p>
+<p>浏览器中输入<a href="http://ip:8080/area/" target="_blank" rel="noopener">http://ip:8080/area/</a> 访问的就是<a href="http://10.1.0.1:8080/" target="_blank" rel="noopener">http://10.1.0.1:8080/</a> 这个服务;</p>
+<p>可以看出，ngnix配置反向代理，也是一种解决<strong>浏览器跨域问题</strong>的方法(在10.1.0.1:8080的这个服务，在 ip:8080这个域下用js是访问不了的，因为跨域了，但是配置了反向代理以后，用ip:8080/area/ 就能访问到了，^_^)。</p>
+<h4 id="遇到的问题，静态资源访问404"><a href="#遇到的问题，静态资源访问404" class="headerlink" title="遇到的问题，静态资源访问404"></a>遇到的问题，静态资源访问404</h4><p>如下是实际中的一个配置</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> multi_relation &#123;</span><br><span class="line">	<span class="attribute">server</span> <span class="number">127.0.0.1:20000</span> weight=<span class="number">1</span> max_fails=<span class="number">5</span> fail_timeout=<span class="number">6s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line">    <span class="attribute">root</span> /www;</span><br><span class="line">    <span class="attribute">index</span> index.php index.html index.htm;</span><br><span class="line">    ...</span><br><span class="line">    <span class="attribute">location</span> /relation/ &#123;</span><br><span class="line">    	<span class="comment">#[规则1]</span></span><br><span class="line">        <span class="attribute">proxy_pass</span> http://multi_relation;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ .*.(css|js|png|gif|jpg)$</span> &#123;</span><br><span class="line">        <span class="comment">#[规则2]</span></span><br><span class="line">    	<span class="attribute">access_log</span>   <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">expires</span>      <span class="number">30d</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问<a href="http://ip:8080/relation/" target="_blank" rel="noopener">http://ip:8080/relation/</a> 的时候，静态资源都报404错误。</p>
+<p>对于127.0.0.1:20000的这个服务，它的静态资源可能在127.0.0.1:20000/static/ 下，做了反向代理以后，我们请求 <a href="http://ip:8080/relation/static/test.js" target="_blank" rel="noopener">http://ip:8080/relation/static/test.js</a> , ngnix匹配/relation/以后，就会知道去127.0.0.1:20000这个服务去拿资源</p>
+<p>但是因为还有规则2，匹配到规则1以后，继续往下搜索，又匹配了规则2，所以ngnix会对匹配规则2的url做规则2的处理，这个时候，静态资源就找不到了，因为ip:8080/relation/下实际上没有/static/test.js这个资源；</p>
+<p>所以，如果是单独的服务做反向代理的时候，别忘了加上^~ ，规则1修改为</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /relation/ &#123;</span><br><span class="line">  <span class="comment"># 规则1 匹配到 /relation/ 开头的地址，停止往下搜索</span></span><br><span class="line">  <span class="attribute">proxy_pass</span> http://multi_relation;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样<a href="http://ip:8080/relation/static/test.js" target="_blank" rel="noopener">http://ip:8080/relation/static/test.js</a> 匹配到规则1以后，就不会去匹配规则2啦～</p>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/02/01/ngnix配置静态资源404问题/" data-id="cjhbpfquo000d0x1ppexy7euf" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/02/01/ngnix配置静态资源404问题/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ngnix配置/">ngnix配置</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/03/移动web开发初级攻略/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          移动web开发初级攻略
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/26/web地图前端入门知识小总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">web地图前端入门知识小总结</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

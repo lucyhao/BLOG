@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="lucy Hao">
+<meta property="og:url" content="http://lucyhao.com/page/4/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lucy Hao">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main">
+      <article id="post-canvas“美图”照片" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/12/canvas“美图”照片/">canvas“美图”照片</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/08/12/canvas“美图”照片/">
+      <time datetime="2017-08-12T05:00:45.000Z" itemprop="datePublished">2017-08-12</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>最近遇到需要对图片进行处理的情况，搜索到了这篇文章<a href="https://www.html5rocks.com/en/tutorials/canvas/imagefilters/" target="_blank" rel="noopener">Image filters with canvas</a>，实质就是利用canvas对图片的像素进行处理。</p>
+</blockquote>
+<h3 id="Step1-get-pixels-获取图片的像素"><a href="#Step1-get-pixels-获取图片的像素" class="headerlink" title="Step1: get pixels 获取图片的像素"></a>Step1: get pixels 获取图片的像素</h3><p>在canvas中，可以用getImageData来获取画布上的像素数据，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> imageData = ctx.getImageData(left, top, width, height);<span class="string">`</span></span><br></pre></td></tr></table></figure>
+<p>得到的是一个imageData对象，包含三个内容</p>
+<ul>
+<li><p>imageData.width [只读]</p>
+</li>
+<li><p>imageData.height [只读]</p>
+</li>
+<li><p>imageData.data [只读] 首先这是一个一维数组，其次它是Uint8ClampedArray类型的一维数组。 这种类型的数组，就是把rgba这四个通道的数值(0-255)依次排开保存在这个一维的数组中，按照图片从上到下，从左到右的顺序。</p>
+</li>
+</ul>
+<p>比如data 的值是[59,61,60,255,65,65,62,255…..] data[0],59就表示的是这个图像左上角第一个像素的r值(红色通道的值) ; data[1],61表示左上角第一个像素的g值(绿色通道的值); data[2],60表示 左上角第一个像素的b值(蓝色通道的值)；data[3],255表示左上角第一个像素的a值(透明度的值)。</p>
+<h3 id="Step3-draw-pixels-把像素画成图片"><a href="#Step3-draw-pixels-把像素画成图片" class="headerlink" title="Step3: draw pixels 把像素画成图片"></a>Step3: draw pixels 把像素画成图片</h3><p>得到像素的rgba数组之后，对它们进行相应的处理，然后再使用putImageData把像素“绘制”到画布上，就可以看到处理之后的图片了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.putImageData(imagedata, dx, dy);</span><br></pre></td></tr></table></figure>
+<p>imagedata同上面的imagedata对象；dx 在目标画布上距离左上角的水平位移；dy在目标画布上距离左上角的垂直位移。</p>
+<p>有了getImageData和putImageData这两个API，已经解决了“输入”与“输出”的问题。剩下的就是中间的处理过程了。</p>
+<h3 id="Step2-how-to-handle-pixels-处理像素"><a href="#Step2-how-to-handle-pixels-处理像素" class="headerlink" title="Step2: how to handle pixels 处理像素"></a>Step2: how to handle pixels 处理像素</h3><p>最关键的就是中间的处理过程啦。</p>
+<p>(1)灰度图片(把一个彩色的图片变成灰色的)，公式如下，这是所谓的心理学公式，来源于人眼对红/蓝不敏感。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.2126</span>*r + <span class="number">0.7152</span>*g + <span class="number">0.0722</span>*b;</span><br></pre></td></tr></table></figure>
+<p>把imageData中所有的rgb值都设置为这个值，显示出来的图片“看起来”就是灰色的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">imagedata</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> d = imagedata.data;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;d.length; i+=<span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> r = d[i];</span><br><span class="line">    <span class="keyword">var</span> g = d[i+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">var</span> b = d[i+<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> v = <span class="number">0.2126</span>*r + <span class="number">0.7152</span>*g + <span class="number">0.0722</span>*b;</span><br><span class="line">    d[i] = d[i+<span class="number">1</span>] = d[i+<span class="number">2</span>] = v</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> imagedata;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(2)图片变亮变暗, 把rgb的颜色值加大，图片就变亮；颜色值减小，图片就变暗。255,255,255白色；0,0,0黑色</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">imagedata, adjustment</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> d = imagedata.data;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;d.length; i+=<span class="number">4</span>) &#123;</span><br><span class="line">    d[i] += adjustment;</span><br><span class="line">    d[i+<span class="number">1</span>] += adjustment;</span><br><span class="line">    d[i+<span class="number">2</span>] += adjustment;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> imagedata;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>(3)卷积convolution,一个看到名字就觉得很难的东西。同时它又是一个对图像处理很有用的东西。可以用它来做“模糊”、“锐化”、“边缘检测”等工作。它的概念就是源像素周围的像素进行加权相加，然后作为目标元素。</p>
+<p>比如我们要“锐化”一个图像，那么就用</p>
+<p> [  0, -1,  0,   </p>
+<p>   -1,  5, -1,    </p>
+<p>​    0, -1,  0 ]</p>
+<p>这个变化矩阵去加权像素。</p>
+<p>如下图所示：</p>
+<image width="600" src="http://blog-1255342807.cossgp.myqcloud.com/pixels.jpeg"></image>
+
+<p>目标像素的r = 1 <em> 0 + 10 </em> -1 + 1<em> 0 + 5 </em> -1 + 2 <em> 5 + 20 </em> -1 + 10 <em> 0 + 1 </em> -1 + 2 * 0 = -26  最终r就是0（小于0的会用0代替，大于255的会用255代替), 同理依次计算g ,b 就能得到目标像素的r, g ,b 。</p>
+<p>注意，因为imageData是按照rgba的顺序依次存的，变化矩阵也是用一维数组存的，所以在计算的时候，要注意正确的取值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convolution</span>(<span class="params">imageData, matrix</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//获取变化矩阵的合</span></span><br><span class="line">  <span class="keyword">var</span> divisor = matrix.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;<span class="keyword">return</span> a + b;&#125;) || <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> oldpx = imageData.data;</span><br><span class="line">  <span class="keyword">var</span> w = imageData.width;</span><br><span class="line">  <span class="keyword">var</span> h = imageData.height</span><br><span class="line"></span><br><span class="line">  <span class="comment">//如果直接在imageData上修改的话，会导致后面的数据计算的时候拿到的不是原始的数据。所以需要创建一个新的 imageData数据</span></span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>);</span><br><span class="line">  <span class="keyword">var</span> newdata = ctx.createImageData(w,h);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> newpx = newdata.data</span><br><span class="line">  <span class="keyword">var</span> len = newpx.length;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> ((i + <span class="number">1</span>) % <span class="number">4</span> === <span class="number">0</span>) &#123; <span class="comment">//alpha 通道的数据不变</span></span><br><span class="line">      newpx[i] = oldpx[i];</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> these = [</span><br><span class="line">      oldpx[i - w * <span class="number">4</span> - <span class="number">4</span>] || oldpx[i], <span class="comment">//没有的元素用本身去填</span></span><br><span class="line">      oldpx[i - w * <span class="number">4</span>]     || oldpx[i],</span><br><span class="line">      oldpx[i - w * <span class="number">4</span> + <span class="number">4</span>] || oldpx[i],</span><br><span class="line">      oldpx[i - <span class="number">4</span>]         || oldpx[i],</span><br><span class="line">      oldpx[i],</span><br><span class="line">      oldpx[i + <span class="number">4</span>]         || oldpx[i],</span><br><span class="line">      oldpx[i + w * <span class="number">4</span> - <span class="number">4</span>] || oldpx[i],</span><br><span class="line">      oldpx[i + w * <span class="number">4</span>]     || oldpx[i],</span><br><span class="line">      oldpx[i + w * <span class="number">4</span> + <span class="number">4</span>] || oldpx[i]</span><br><span class="line">    ];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">9</span>; j++) &#123;</span><br><span class="line">      res += these[j] * m[j];</span><br><span class="line">    &#125;<span class="comment">//求和</span></span><br><span class="line">    res /= divisor;</span><br><span class="line"></span><br><span class="line">    newpx[i] = res;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> newdata;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>卷积的变化矩阵有很多，运用不同的矩阵可以得到很多“美图”的效果。查了一下，有很多常见的算法，并且对于卷积计算的优化工作也是图像处理研究领域中的一个小课题。这也是一个可以深入研究的分支～</p>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2017/08/12/canvas“美图”照片/" data-id="cjhbpfqui00070x1p6mqsgypz" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2017/08/12/canvas“美图”照片/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+</article>
+
+
+
+    
+
+     
+    
+    </section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

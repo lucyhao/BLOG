@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="lucy Hao">
+<meta property="og:url" content="http://lucyhao.com/page/11/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lucy Hao">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main">
+      <article id="post-【译】使用supertest来测试API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/19/【译】使用supertest来测试API/">【译】使用supertest来测试API</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/04/19/【译】使用supertest来测试API/">
+      <time datetime="2016-04-19T07:48:53.000Z" itemprop="datePublished">2016-04-19</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>我最近发现supertest是一个测试API很棒的工具. 虽然对我来说它还很新,但是这个包其实好几年前就有了.</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>可以使用很多种方式配置supertest. 如果测试的一个外部连接, 可以像下面这样配置base url:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'supertest'</span>)(<span class="string">"http://example.com"</span>);</span><br></pre></td></tr></table></figure>
+<p>如果要测试Express框架搭建的APP, 可以把APP的入口文件传给supertest,  让它关注APP的状态(启动/关闭)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myApp = <span class="built_in">require</span>(<span class="string">'../app.js'</span>);</span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'supertest'</span>)(myApp);</span><br></pre></td></tr></table></figure>
+<p>这样写的好处是, supertest会关注APP的启动和关闭. 你就可以转注在写测试代码, 而不用关系启动APP, 配置端口等.</p>
+<h2 id="写测试"><a href="#写测试" class="headerlink" title="写测试"></a>写测试</h2><p>一旦引入了supertest, 使用起来就很简单了. 在下面的例子中, 使用Mocha这个测试框架.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'my api'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    it(<span class="string">'returns hello world'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">        request.</span><br><span class="line">            .get(<span class="string">'/'</span>)</span><br><span class="line">            .expect(<span class="string">'Hello, World!'</span>, done);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>最简单的测试get接口的代码. 访问根目录”/“, 期望得到的返回是”Hello, World!”.</p>
+<p>由于request是异步的, 把”done”作为参数(Mocha提供的). 在验证服务端的返回的时候调用它.</p>
+<p>可以像下面这样测试一个JSON数据:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.</span><br><span class="line">    .get(<span class="string">'/'</span>)</span><br><span class="line">    .expect(&#123;<span class="attr">message</span>: <span class="string">"Hello, World!"</span>&#125;, done);</span><br></pre></td></tr></table></figure>
+<p>测试header:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.</span><br><span class="line">    .get(<span class="string">'/foo'</span>)</span><br><span class="line">    .expect(<span class="string">'Content-Type'</span>, <span class="string">'application/json'</span>, done);</span><br></pre></td></tr></table></figure>
+<p>测试状态码: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request</span><br><span class="line">    .get(<span class="string">'/some-error-route'</span>)</span><br><span class="line">    .expect(<span class="number">500</span>, <span class="string">'Oops. Something went wrong'</span>, done);</span><br></pre></td></tr></table></figure>
+<p>发送非-GET请求:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = &#123;<span class="attr">name</span>: <span class="string">'Bob'</span>&#125;;</span><br><span class="line">request</span><br><span class="line">    .post(<span class="string">'/create-user'</span>)</span><br><span class="line">    .send(user)</span><br><span class="line">    .expect(&#123;<span class="attr">success</span>:<span class="literal">true</span>&#125;, done);</span><br></pre></td></tr></table></figure>
+<p>可以设置request的头信息: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">request</span><br><span class="line">    .get(<span class="string">'/foo'</span>)</span><br><span class="line">    .set(<span class="string">'Accept'</span>, <span class="string">'text/plain'</span>)</span><br><span class="line">    .expect(<span class="string">'Content-Type'</span>, <span class="string">'text/plain'</span>, done);</span><br></pre></td></tr></table></figure>
+<p>还可以使用正则表达式匹配header和body.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">request</span><br><span class="line">    .get(<span class="string">'/redirect'</span>)</span><br><span class="line">    .expect(<span class="string">'Location'</span>: <span class="regexp">/\/destination/</span>)</span><br><span class="line">    .expect(<span class="number">301</span>, done);</span><br></pre></td></tr></table></figure>
+<p>如果需要串行的多个requests, 可以利用”expect”的回调来实现,如下: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Kick things off</span></span><br><span class="line">purgeUsers();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">purgeUsers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    request</span><br><span class="line">        .get(<span class="string">'/users/purge'</span>)</span><br><span class="line">        .expect(&#123;<span class="attr">success</span>:<span class="literal">true</span>&#125;, checkNoUsers);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkNoUsers</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) done(err);</span><br><span class="line">    request</span><br><span class="line">        .get(<span class="string">'/users'</span>)</span><br><span class="line">        .expect([], addUser);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addUser</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) done(err);</span><br><span class="line">    request</span><br><span class="line">        .post(<span class="string">'/users'</span>)</span><br><span class="line">        .send(&#123;<span class="attr">name</span>: <span class="string">'Bob'</span>&#125;)</span><br><span class="line">        .expect(&#123;<span class="attr">success</span>:<span class="literal">true</span>&#125;, checkUsers);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkUsers</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) done(err);</span><br><span class="line">    request</span><br><span class="line">        .get(<span class="string">'/users'</span>)</span><br><span class="line">        .expect([&#123;<span class="attr">name</span>: <span class="string">'Bob'</span>&#125;], done);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 最后,如果要对结果做一些特殊的处理, 可以在.end()这个函数中处理:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> assert = <span class="built_in">require</span>(<span class="string">'assert'</span>);</span><br><span class="line">request</span><br><span class="line">    .get(<span class="string">'/foo'</span>)</span><br><span class="line">    .end(<span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">        assert.equal(result.body.foo, <span class="string">'Bar'</span>);</span><br><span class="line">        done();</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>可能还有很多我没有注意到的特性, 不过上面的这些都是我常用到的~</p>
+<p>译: <a href="http://willi.am/blog/2014/07/28/test-your-api-with-supertest/" target="_blank" rel="noopener">http://willi.am/blog/2014/07/28/test-your-api-with-supertest/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/04/19/【译】使用supertest来测试API/" data-id="cjhbpfqus000l0x1pszyjvjhu" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/04/19/【译】使用supertest来测试API/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/supertest/">supertest</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+</article>
+
+
+
+    
+
+     
+    
+    </section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

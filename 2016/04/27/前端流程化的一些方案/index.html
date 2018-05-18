@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>前端流程化的一些方案 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="由于“团队”主要就是做一些内部项目，包括一些小demo和一些小系统，所以前端的人员情况不是特别乐观，一些同学没有服务器的权限，导致只能在自己的window机器上开发～ 我仔细想了下，采用问题＋解决方案的方式来写这个文章也许更能表达清楚我的想法与做法.  问题一：没有采用任务代码版本控制   问题二：因为在window上都是开发的静态页面，html+css+js，html 中引入的也是源码，导致浏览">
+<meta name="keywords" content="node,前端流程化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端流程化的一些方案">
+<meta property="og:url" content="http://lucyhao.com/2016/04/27/前端流程化的一些方案/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="由于“团队”主要就是做一些内部项目，包括一些小demo和一些小系统，所以前端的人员情况不是特别乐观，一些同学没有服务器的权限，导致只能在自己的window机器上开发～ 我仔细想了下，采用问题＋解决方案的方式来写这个文章也许更能表达清楚我的想法与做法.  问题一：没有采用任务代码版本控制   问题二：因为在window上都是开发的静态页面，html+css+js，html 中引入的也是源码，导致浏览">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/simpleCode.png">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/projectCode.png">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端流程化的一些方案">
+<meta name="twitter:description" content="由于“团队”主要就是做一些内部项目，包括一些小demo和一些小系统，所以前端的人员情况不是特别乐观，一些同学没有服务器的权限，导致只能在自己的window机器上开发～ 我仔细想了下，采用问题＋解决方案的方式来写这个文章也许更能表达清楚我的想法与做法.  问题一：没有采用任务代码版本控制   问题二：因为在window上都是开发的静态页面，html+css+js，html 中引入的也是源码，导致浏览">
+<meta name="twitter:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/simpleCode.png">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-前端流程化的一些方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端流程化的一些方案
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/04/27/前端流程化的一些方案/">
+      <time datetime="2016-04-27T11:01:20.000Z" itemprop="datePublished">2016-04-27</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>由于“团队”主要就是做一些内部项目，包括一些小demo和一些小系统，所以前端的人员情况不是特别乐观，一些同学没有服务器的权限，导致只能在自己的window机器上开发～</p>
+<p>我仔细想了下，采用问题＋解决方案的方式来写这个文章也许更能表达清楚我的想法与做法.</p>
+<blockquote>
+<p>问题一：没有采用任务代码版本控制</p>
+</blockquote>
+<blockquote>
+<p>问题二：因为在window上都是开发的静态页面，html+css+js，html 中引入的也是源码，导致浏览器有缓存问题。在js中ajax请求后端数据的时候，因为前后端是分离的，要不就是跨域访问，要不就是后端给的不是8080，8081这些浏览器端js能请求到的端口</p>
+</blockquote>
+<blockquote>
+<p>问题三：如何部署？前端同学在window上开发完，因为问题二提到的跨域什么问题自己也搞不清楚原因，就把代码打包给后端，后端放到服务器上；把ip+port给产品就算完成任务～后续的维护及其麻烦，首先前端同学可能都没有在自己的window机器上确认过数据是否ＯＫ？其次修改bug,多人协作，后端对代码版本的维护等都是问题</p>
+</blockquote>
+<p>问题一解决方案：这个就不用多说了，没有版本控制就没有协作，就没有代码管理，直接上了git. </p>
+<p>问题二解决方案：</p>
+<p>其实对于团队来说，我们接手的主要是两类项目。一类就是小demo，大概一，两个静态页面的样子；一类就是后台系统。</p>
+<h3 id="一：先说小demo的解决方案："><a href="#一：先说小demo的解决方案：" class="headerlink" title="一：先说小demo的解决方案："></a>一：先说小demo的解决方案：</h3><p>既然是小demo,那么我认为快速交付就是它的宗旨，所以采用静态页面的方式，html+css+js, </p>
+<p>jquery+bootstrap不仅前端同学上手快也是他们效率最高的。代码组织结构如下：</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/simpleCode.png" alt="代码组织结构"></p>
+<ul>
+<li>.html各种html文件</li>
+<li>css ,js, images都是顾名思义的目录</li>
+<li>ackage.json基本信息和gulpfile.js中需要用到的包</li>
+</ul>
+<p>gulpfile.js当然也就是大家熟悉的对静态资源压缩，合并，增加md5 hash这类的功能，也是为了解决浏览器的缓存问题。在gulpfile.js中，还会对引用资源的路径做替换，比如开发的时候：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#html中对外部css的引用</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> href=<span class="string">"css/page/city.css"</span>/&gt;</span><br><span class="line"></span><br><span class="line">#html中对外部js的引用</span><br><span class="line">&lt;script src=<span class="string">"js/page/city.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">#page.css的对image的引用</span><br><span class="line">div&#123;</span><br><span class="line"> 　　　background: url(../../images/same.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上线前会替换成绝对路径</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#替换以后</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> href=<span class="string">"/dist/css/page/city-3d7d979f53.css"</span>&gt;</span><br><span class="line"></span><br><span class="line">#替换以后</span><br><span class="line">&lt;script src=<span class="string">"/dist/js/page/city-b513faff42.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">#替换以后</span><br><span class="line">div&#123;<span class="attr">background</span>:url(<span class="regexp">/dist/im</span>ages/same.png)&#125;</span><br></pre></td></tr></table></figure>
+<p>规定了下各静态文件在引用资源时候的规范：</p>
+<ul>
+<li>css文件中引用image图片路径, 如: ../../images/**.png</li>
+<li>js文件中引用image图片路径，如images/**.png</li>
+<li>html文件中引用css或者js路径，如<link rel="stylesheet" stype="text/css" href="css/page/city.css"></li>
+<li>jquery+bootstrap直接引用cdn的路径</li>
+</ul>
+<p>这是为了gulpfile.js的通用性（有点小私心，不用每个项目我都还要去再重写下gulpfile），方便部署（部署的问题后面聊）.</p>
+<h3 id="二：接口部分的解决方案"><a href="#二：接口部分的解决方案" class="headerlink" title="二：接口部分的解决方案"></a>二：接口部分的解决方案</h3><p>再小的demo也需要去后端拉取数据，针对存在的问题。一开始采用的是ngnix转发的方式，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location ^~ <span class="regexp">/test/</span> &#123;</span><br><span class="line">         proxy_pass http:<span class="comment">//10.*.*.*:30000/;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>后来发现要转发的接口越来越多；另外有些接口还可以再做一些逻辑处理，比如后端给的接口只支持单id查询，如果有一个转发层，还可以给js封装一个支持多id查询的前端接口；相对其他语言js是我最熟悉的语言，所以理所当然就选择了用node来做这个转发层。</p>
+<p>考虑到只是简单的转发+一些小逻辑处理, 所以这个node转发层,也没有采用什么mvc框架. 总共引用的模块如下: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>);</span><br><span class="line"><span class="keyword">var</span> urllib = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">var</span> querystring = <span class="built_in">require</span>(<span class="string">"querystring"</span>);</span><br><span class="line"><span class="keyword">var</span> iconv = <span class="built_in">require</span>(<span class="string">"iconv-lite"</span>);</span><br></pre></td></tr></table></figure>
+<p>所做的事情 简单到就是 转发+某些接口需要编码转换 </p>
+<p>解决跨域+返回的数据格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET, POST, OPTIONS, PUT, PATCH, DELETE'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'X-Requested-With,content-type'</span>);</span><br><span class="line">res.setHeader(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="literal">true</span>);</span><br><span class="line">res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/json;charset=UTF-8'</span>)</span><br></pre></td></tr></table></figure>
+<p>虽然转发层这里太简单，但是我依然秉承着严谨的态度(^_^)，还加了测试代码(supertest+mocha)比如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="built_in">require</span>(<span class="string">'supertest'</span>)(<span class="string">"http://localhost:3001"</span>);</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'get 热度数据'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    it(<span class="string">'returns json data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">done</span>) </span>&#123;</span><br><span class="line">        request</span><br><span class="line">            .get(<span class="string">'/getHeat'</span>)</span><br><span class="line">            .expect(<span class="string">'Content-Type'</span>, <span class="string">'application/json;charset=UTF-8'</span>, done)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>三：后台系统</p>
+<p>其实这是问题二的第二类前端涉及到的部分，采用的是node+express+webpack的方式。</p>
+<p>采用node是因为相对于php,python来说，我更熟悉js; 采用express是因为资料相对多一些，网络上也有一些解决方案(我也是第一次做node项目)；webpack就是打包工具（私心也是因为react现在比较火，在内部系统上可以尝试下，学习嘛）</p>
+<p>前面也提到到团队人员配置的问题，所以最近也是用 express-generator的代码修改了下，把jade替换成swig模板，然后增加webpack的配置。做了一个myexpress-generator，放到了公司内部</p>
+<p>当然还不完善，这样方便团队人员开发的时候，能够直接用~</p>
+<p>项目目录如下：</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/projectCode.png" alt="项目目录"></p>
+<ul>
+<li>在开发的时候，运行wpDevServer.js，为了修改静态文件的时候，能够直接刷新页面看到结果，而不用再webpack打包一次</li>
+<li>其他的其实就是express  </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/04/27/前端流程化的一些方案/" data-id="cjhbpfquz00110x1pywcq3b07" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/04/27/前端流程化的一些方案/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端流程化/">前端流程化</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/19/尝试写一下对象的序列化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          尝试写一下对象的序列化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/19/【译】使用supertest来测试API/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">【译】使用supertest来测试API</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>简单聊聊touch事件 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是对移动端touch事件的一些说明  引子众前端同学应该都处理过PC时代的鼠标click事件，随着时间的发展，我们的领域从PC蔓延到了移动端，从最熟悉的click变化成了触摸touch。鼠标 click-&amp;gt;手指、触摸笔等等 touch">
+<meta name="keywords" content="移动web开发,touch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单聊聊touch事件">
+<meta property="og:url" content="http://lucyhao.com/2016/02/03/简单聊聊touch事件/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是对移动端touch事件的一些说明  引子众前端同学应该都处理过PC时代的鼠标click事件，随着时间的发展，我们的领域从PC蔓延到了移动端，从最熟悉的click变化成了触摸touch。鼠标 click-&amp;gt;手指、触摸笔等等 touch">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p7.qhimg.com/d/inn/e7c9fec7/touchType.jpg">
+<meta property="og:image" content="http://p5.qhimg.com/d/inn/dbb7c679/2.png">
+<meta property="og:image" content="http://p0.qhimg.com/d/inn/30706688/3.png">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单聊聊touch事件">
+<meta name="twitter:description" content="这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是对移动端touch事件的一些说明  引子众前端同学应该都处理过PC时代的鼠标click事件，随着时间的发展，我们的领域从PC蔓延到了移动端，从最熟悉的click变化成了触摸touch。鼠标 click-&amp;gt;手指、触摸笔等等 touch">
+<meta name="twitter:image" content="http://p7.qhimg.com/d/inn/e7c9fec7/touchType.jpg">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-简单聊聊touch事件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      简单聊聊touch事件
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/02/03/简单聊聊touch事件/">
+      <time datetime="2016-02-03T07:09:57.000Z" itemprop="datePublished">2016-02-03</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是对移动端touch事件的一些说明</p>
+</blockquote>
+<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>众前端同学应该都处理过PC时代的鼠标click事件，随着时间的发展，我们的领域从PC蔓延到了移动端，从最熟悉的click变化成了触摸touch。<strong>鼠标 click</strong>-&gt;<strong>手指、触摸笔等等 touch</strong></p>
+<a id="more"></a> 
+<h2 id="开启触摸“时代”"><a href="#开启触摸“时代”" class="headerlink" title="开启触摸“时代”"></a>开启触摸“时代”</h2><h3 id="触摸事件"><a href="#触摸事件" class="headerlink" title="触摸事件"></a>触摸事件</h3><blockquote>
+<p><strong>接口</strong></p>
+<p><code>TouchEvent</code>代表当触摸行为在平面上变化的时候发生的事件</p>
+<p><code>Touch</code> 代表用户与触摸平面间的一个触摸点</p>
+<p><code>TouchList</code> 代表一系列的Touch；一般用户多个触摸点触碰平面的时候</p>
+<p><code>DocumentTouch</code> 包含了一些创建Touch和TouchList对象的方法 ——<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Touch_events" target="_blank" rel="noopener">MDN: Touch Events</a></p>
+</blockquote>
+<h3 id="TouchEvent接口"><a href="#TouchEvent接口" class="headerlink" title="TouchEvent接口"></a>TouchEvent接口</h3><ul>
+<li><p>类型： touchstart、touchmove、touchend、touchenter、touchleave、touchcancel</p>
+</li>
+<li><p>属性：altkey、changedTouchs、ctrlKey、metaKey、shiftKey、targetTouches、touches、type、target</p>
+<p>——<a href="http://codepen.io/lilyH/pen/PwWGjo" target="_blank" rel="noopener">例子</a></p>
+</li>
+</ul>
+<h3 id="常用的touch事件类型"><a href="#常用的touch事件类型" class="headerlink" title="常用的touch事件类型"></a>常用的touch事件类型</h3><ul>
+<li>touchstart : 手指放在一个dom元素上</li>
+<li>touchmove: 手指拖动一个dom元素</li>
+<li>touchend: 手指从一个dom元素上移开</li>
+<li>touchenter : 移动的手指进入一个dom元素</li>
+<li>touchleave : 移动的手指离开一个dom元素</li>
+<li>touchcancel : 触摸中断</li>
+</ul>
+<h3 id="TouchEvent事件注意点"><a href="#TouchEvent事件注意点" class="headerlink" title="TouchEvent事件注意点"></a>TouchEvent事件注意点</h3><p>可以通过检查触摸事件的TouchEvent.type属性来确定当前事件属于哪种类型</p>
+<blockquote>
+<p>注意：在很多情况才，触摸事件和鼠标事件会同时被触发（目的是让没有对触摸设备优化的代码仍然可以在触摸设备上正常工作）。如果你使用了触摸事件，可以调用<code>event.preventDefault()</code>来阻止鼠标事件被触发</p>
+</blockquote>
+<h3 id="看看这些常用的手势"><a href="#看看这些常用的手势" class="headerlink" title="看看这些常用的手势"></a>看看这些常用的手势</h3><p><img src="http://p7.qhimg.com/d/inn/e7c9fec7/touchType.jpg" alt="各种手势"></p>
+<p>推荐一个js手势库：<a href="http://hammerjs.github.io/" target="_blank" rel="noopener">Hammer.js</a></p>
+<h2 id="zepto-touch"><a href="#zepto-touch" class="headerlink" title="zepto touch"></a>zepto touch</h2><h3 id="300ms延迟"><a href="#300ms延迟" class="headerlink" title="300ms延迟"></a>300ms延迟</h3><p>在手机上，touchstart的触发时间与最后click的触发时间的时间延迟</p>
+<h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><blockquote>
+<p>追溯到07年Apple准备发布  iPhone的时候，当时为了解决手机上web页面太小的问题，所以有了“双击屏幕放大”的功能（double tap to zoom）</p>
+</blockquote>
+<blockquote>
+<p>“双击屏幕放大”的功能导致了300MS的click事件的延迟，因为当用户触摸屏幕的时候，浏览器不知道用户是要double tap吗？还是要click？所以浏览器在第一次tap事件之后会等300MS来判断到底是double tap 还是click</p>
+</blockquote>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>-浏览器层面：在meta里面，加入信息，阻止双击放大的功能</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width-device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>-代码层面：fastclick.js</p>
+<p>-代码：利用touchstart、touchmove等内置事件的封装，来实现手机上的各种手势，比如tap、swipe等</p>
+<h3 id="zepto-touch如何解决"><a href="#zepto-touch如何解决" class="headerlink" title="zepto-touch如何解决"></a>zepto-touch如何解决</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$(documnet)</span><br><span class="line">	.on(<span class="string">'touchstart ...'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">		...</span><br><span class="line">		now = <span class="built_in">Date</span>.now()</span><br><span class="line">		delta = now - (touch.last || now)</span><br><span class="line">		<span class="keyword">if</span>(delta &gt; <span class="number">0</span> &amp;&amp; delta &lt;=<span class="number">250</span> )touch.isDoubleTap = <span class="literal">true</span></span><br><span class="line">		touch.last = now</span><br><span class="line">	&#125;)</span><br><span class="line">	.on(<span class="string">'touchmove ...'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">	&#125;)</span><br><span class="line">	.on(<span class="string">'touchend ...'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">		...</span><br><span class="line">		<span class="keyword">if</span>(deltaX &lt; <span class="number">30</span> &amp;&amp; deltaY &lt; <span class="number">30</span>)&#123;</span><br><span class="line">			<span class="keyword">var</span> event = $.Event(<span class="string">'tap'</span>)</span><br><span class="line">			touch.el.trigger(event)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一句话总结：<strong>touch模块绑定事件touchstart、touchmove、touchend到document上，然后通过计算事件触发的时间差、位置差来实现自定义的tap、swipe等</strong></p>
+</blockquote>
+<h3 id="Ghost-Click"><a href="#Ghost-Click" class="headerlink" title="Ghost Click"></a>Ghost Click</h3><ul>
+<li><p>当手指触摸到屏幕上的时候触发touchstart事件</p>
+</li>
+<li><p>当手指离开屏幕的时候触发touchend事件</p>
+</li>
+<li><p>浏览器等待300ms看是否有另外一个tap事件</p>
+</li>
+<li><p>如果没有另外的这个tap事件，那么click事件就会被触发，这就是ghost click</p>
+<h3 id="zepto-touch的一个小问题"><a href="#zepto-touch的一个小问题" class="headerlink" title="zepto touch的一个小问题"></a>zepto touch的一个小问题</h3><p>没有阻止ghost click的发生 <a href="http://codepen.io/lilyH/pen/YPNBJG?editors=101" target="_blank" rel="noopener">例子</a></p>
+<h3 id="如何阻止Ghost-click"><a href="#如何阻止Ghost-click" class="headerlink" title="如何阻止Ghost click"></a>如何阻止Ghost click</h3></li>
+<li><p>在touchstart的时候调用preventDefault()，在大多数的浏览器上能解决这个问题，但是在这个dom元素上就不能触发scrolling滚动</p>
+</li>
+<li><p>在touchend的时候调用preventDefault()，不过只有一小部分的浏览器支持</p>
+</li>
+<li><p>如果页面是不可scalable的时候，一些浏览器不会等待300ms去触发click，click会在touchend的时候很快的触发，这个时候可以用click来代替tap</p>
+</li>
+</ul>
+<p>——<a href="http://mlaval.github.io/ghostclick/" target="_blank" rel="noopener">小测试</a></p>
+<blockquote>
+<p>以上的三种方法基本就没有解决问题</p>
+</blockquote>
+<p>看看一个关于上面各种方法解决问题的测试图</p>
+<p><img src="http://p5.qhimg.com/d/inn/dbb7c679/2.png" alt=""></p>
+<h3 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h3><ul>
+<li>touchstart、touchmove、touchend事件绑定到document上</li>
+<li>事件冒泡</li>
+<li>事件触发时位于当前页面最前面的元素</li>
+</ul>
+<blockquote>
+<p>用preventDefault()只是阻止默认行为，不会阻止事件的冒泡的行为，最后事件还是会冒泡到document上，此时，如果绑定了click事件的dom元素位于页面的最前面，就会触发click事件的发生 </p>
+</blockquote>
+<p>回顾下事件的捕获和冒泡行为</p>
+<p><img src="http://p0.qhimg.com/d/inn/30706688/3.png" alt="事件行为"></p>
+<h3 id="问题假设"><a href="#问题假设" class="headerlink" title="问题假设"></a>问题假设</h3><blockquote>
+<p><strong>不要把事件绑定到document上，然后利用preventDefault()， 是否能解决此问题？</strong></p>
+</blockquote>
+<h2 id="重写touch模块"><a href="#重写touch模块" class="headerlink" title="重写touch模块"></a>重写touch模块</h2><p><a href="https://github.com/lucyhao/touch" target="_blank" rel="noopener">源码</a></p>
+<h3 id="理念"><a href="#理念" class="headerlink" title="理念"></a>理念</h3><ul>
+<li>过touchstart，touchmove，touchend这些内置的事件来实现tap，swipe等手势</li>
+<li>计算touch事件触发的时间差，位置差来实现了自定义的tap，swipe等事件</li>
+<li>tap，swipe这些事件通过自定义事件来触发</li>
+</ul>
+<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><blockquote>
+<p>内置的事件会由浏览器根据某些操作进行触发，</p>
+<p>自定义的事件就需要人工触发</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建haosou事件</span></span><br><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> Event(<span class="string">'haosou'</span>);</span><br><span class="line"><span class="comment">//监听haosou事件</span></span><br><span class="line">elem.addEventListener(<span class="string">'haosou'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;...&#125;,<span class="literal">false</span>);</span><br><span class="line"><span class="comment">//分发haosou事件</span></span><br><span class="line">elem.dispatchEvent(event);</span><br></pre></td></tr></table></figure>
+<p>——<a href="http://codepen.io/lilyH/pen/OPWBmp?editors=101" target="_blank" rel="noopener">例子</a></p>
+<h3 id="主代码片段1"><a href="#主代码片段1" class="headerlink" title="主代码片段1"></a>主代码片段1</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//为特定的元素绑定touch事件</span></span><br><span class="line">el.addEventListener(<span class="string">'touchstart'</span>, func, <span class="literal">false</span>);</span><br><span class="line">el.addEventListener(<span class="string">'touchmove'</span>, func, <span class="literal">false</span>);</span><br><span class="line">el.addEventListener(<span class="string">'touchend'</span>, func, <span class="literal">false</span>);</span><br><span class="line">el.addEventListener(<span class="string">'touchcancel'</span>, func, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="主代码片段2"><a href="#主代码片段2" class="headerlink" title="主代码片段2"></a>主代码片段2</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在touchend的时候实现自定义的事件</span></span><br><span class="line"><span class="keyword">var</span> evt = createCustomEvent(<span class="string">'tap'</span>,e);</span><br><span class="line"><span class="keyword">if</span> (evt &amp;&amp; !e.target.dispatchEvent(evt) )&#123;</span><br><span class="line">     e.preventDefault();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="主代码片段3"><a href="#主代码片段3" class="headerlink" title="主代码片段3"></a>主代码片段3</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义事件</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createCustomEvent</span>(<span class="params">touchName,detail</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> evt;</span><br><span class="line">        <span class="keyword">var</span> params = &#123;</span><br><span class="line">            bubbles:<span class="literal">true</span>,</span><br><span class="line">            cancelable: <span class="literal">true</span>,</span><br><span class="line">            detail: detail ? detail : <span class="literal">undefined</span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">window</span>.CustomEvent) &#123;</span><br><span class="line">            evt = <span class="keyword">new</span> <span class="built_in">window</span>.CustomEvent(touchName, &#123;</span><br><span class="line">                bubbles: params.bubbles,</span><br><span class="line">                cancelable: params.cancelable,</span><br><span class="line">                detail : params.detail</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              evt = <span class="built_in">document</span>.createEvent(<span class="string">"CustomEvent"</span>);</span><br><span class="line">              evt.initCustomEvent(touchName, params.bubbles, params.cancelable, params.detail);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">              <span class="comment">//某些老版本的2.3手机不支持CustomEvent，比如索爱2.3系统</span></span><br><span class="line">              evt = <span class="built_in">document</span>.createEvent(<span class="string">"Event"</span>);</span><br><span class="line">              <span class="keyword">for</span> (<span class="keyword">var</span> param <span class="keyword">in</span> params) &#123;</span><br><span class="line">                  evt[param] = params[param];</span><br><span class="line">              &#125;</span><br><span class="line">              evt.initEvent(touchName, params.bubbles, params.cancelable);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> evt;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="假设成立吗？"><a href="#假设成立吗？" class="headerlink" title="假设成立吗？"></a>假设成立吗？</h3><p>如果在touchstart上用preventDefault(),没办法使用事件代理</p>
+<h4 id="强行阻止掉click"><a href="#强行阻止掉click" class="headerlink" title="强行阻止掉click"></a>强行阻止掉click</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//阻止点click事件的发生，</span></span><br><span class="line"><span class="comment">//保证在同一个位置的tap事件以后，不会再有click事件</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> time_threshold = <span class="number">500</span>,</span><br><span class="line">             space_threshold = <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">Date</span>().valueOf() - <span class="keyword">this</span>.endTime &lt;= time_threshold </span><br><span class="line">            &amp;&amp; <span class="built_in">Math</span>.abs(e.clientX-<span class="keyword">this</span>.endX)&lt;=space_threshold</span><br><span class="line">            &amp;&amp; <span class="built_in">Math</span>.abs(e.clientY-<span class="keyword">this</span>.endY)&lt;=space_threshold) &#123;</span><br><span class="line">                  e.stopPropagation();</span><br><span class="line">                  e.preventDefault();</span><br><span class="line">         &#125;</span><br><span class="line">  &#125;, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="在业务中发展"><a href="#在业务中发展" class="headerlink" title="在业务中发展"></a>在业务中发展</h3><ul>
+<li>需要触发子元素的click事件</li>
+<li>swipe不能满足，需要在滑动过程监听事件</li>
+</ul>
+<blockquote>
+<p>最后发展出的独立touch模块事件：</p>
+<p><code>tap</code>   //轻点触摸支持click </p>
+<p><code>tapnoclick</code> //轻点触摸去掉click</p>
+<p><code>swipeleft</code>  // 左滑，在手指离开屏幕以后触发</p>
+<p><code>swiperight</code> // 右滑，在手指离开屏幕以后触发</p>
+<p><code>panleft</code> // 左滑，在手指在屏幕上滑动时触发</p>
+<p><code>panright</code> // 右滑，在手指在屏幕上滑动式触发</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/02/03/简单聊聊touch事件/" data-id="cjhbpfqv100180x1pjoity9j3" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/02/03/简单聊聊touch事件/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/touch/">touch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动web开发/">移动web开发</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/22/利用d3-cloud来展现标签云/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          利用d3-cloud来展现标签云
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/03/移动web开发初级攻略/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">移动web开发初级攻略</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

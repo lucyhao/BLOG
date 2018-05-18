@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>利用gulp实现前端代码的合并压缩 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="把之前一篇15年的文章移动过来～  gulp是什么?看它的图标就是一杯可乐啊！ 基于任务(流式)的自动化构建工具, 它能够自动完成js/css/sass/less等文件的测试, 检查, 压缩, 合并等工作. 众所周知, 前端的静态文件, 在上线前合并压缩是必不可少的. 给文件加上”版本号”, 防止浏览器缓存也是需要的, 不然修改了代码, 还需要用户不断的F5才能更新代码, 估计这个项目也就gam">
+<meta name="keywords" content="gulp,nodeJs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用gulp实现前端代码的合并压缩">
+<meta property="og:url" content="http://lucyhao.com/2016/01/14/利用gulp实现前端代码的合并压缩/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="把之前一篇15年的文章移动过来～  gulp是什么?看它的图标就是一杯可乐啊！ 基于任务(流式)的自动化构建工具, 它能够自动完成js/css/sass/less等文件的测试, 检查, 压缩, 合并等工作. 众所周知, 前端的静态文件, 在上线前合并压缩是必不可少的. 给文件加上”版本号”, 防止浏览器缓存也是需要的, 不然修改了代码, 还需要用户不断的F5才能更新代码, 估计这个项目也就gam">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用gulp实现前端代码的合并压缩">
+<meta name="twitter:description" content="把之前一篇15年的文章移动过来～  gulp是什么?看它的图标就是一杯可乐啊！ 基于任务(流式)的自动化构建工具, 它能够自动完成js/css/sass/less等文件的测试, 检查, 压缩, 合并等工作. 众所周知, 前端的静态文件, 在上线前合并压缩是必不可少的. 给文件加上”版本号”, 防止浏览器缓存也是需要的, 不然修改了代码, 还需要用户不断的F5才能更新代码, 估计这个项目也就gam">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-利用gulp实现前端代码的合并压缩" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用gulp实现前端代码的合并压缩
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/01/14/利用gulp实现前端代码的合并压缩/">
+      <time datetime="2016-01-14T06:33:28.000Z" itemprop="datePublished">2016-01-14</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>把之前一篇15年的文章移动过来～</p>
+</blockquote>
+<h3 id="gulp是什么"><a href="#gulp是什么" class="headerlink" title="gulp是什么?"></a>gulp是什么?</h3><p>看它的图标就是一杯可乐啊！</p>
+<p>基于任务(流式)的自动化构建工具, 它能够自动完成js/css/sass/less等文件的测试, 检查, 压缩, 合并等工作. 众所周知, 前端的静态文件, 在上线前合并压缩是必不可少的. 给文件加上”版本号”, 防止浏览器缓存也是需要的, 不然修改了代码, 还需要用户不断的F5才能更新代码, 估计这个项目也就game over了. </p>
+<p>工欲善其事,必先利其器; 这句话对于研发来说,真的是再合适不过. 而gulp就是这样的利器.</p>
+<a id="more"></a>
+<h3 id="那如何来安装使用gulp呢"><a href="#那如何来安装使用gulp呢" class="headerlink" title="那如何来安装使用gulp呢?"></a>那如何来安装使用gulp呢?</h3><ul>
+<li><p>安装node环境 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">地址</a></p>
+</li>
+<li><p>安装 gulp <code>$ npm install -g gulp</code></p>
+</li>
+<li><p>在项目 根目录下，新建文件 gulpfile.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line">gulp.task(<span class="string">'default'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//写两句代码看看，比如console.log("hello world");</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>运行 <code>$ gulp</code></li>
+</ul>
+<h3 id="如何做合并压缩？"><a href="#如何做合并压缩？" class="headerlink" title="如何做合并压缩？"></a>如何做合并压缩？</h3><p>gulp运行起来了，我们真正的目的是要做合并压缩，如何来做？gulp为我们提供了很多的插件，它还有严格的插件机制保证插件为我们所用，gulp的API也是足够简单，4个API可以搞定绝大多数。</p>
+<p>gulp的插件可以从这里寻找<a href="http://gulpjs.com/plugins/" target="_blank" rel="noopener">http://gulpjs.com/plugins/</a></p>
+<ol>
+<li>压缩CSS：gulp-minify-css</li>
+<li>压缩js : gulp-uglify</li>
+<li>合并js: gulp-concat</li>
+<li>压缩图片：gulp-imagemin</li>
+<li>替换html中相应的文件块：gulp-useref</li>
+<li>文件名加MD5后缀：gulp-rev</li>
+<li>利用gulp-rev生成的manifest.json表替换html中的css和js引用：gulp-rev-replace</li>
+</ol>
+<blockquote>
+<p>注：gulp-useref ，gulp-rev, gulp-rev-replace一般都是连用，他们三个的功能就是，把html文件中加了特定注释的文件区块进行合并，然后gulp-rev对文件加上md5，生存manifest.json，gulp-rev-replace再根据manifest.json文件替换html中对应的路径</p>
+</blockquote>
+<p> gulp有很多插件，选择适合自己项目的，安装到项目中,在gulpfile.js中使用它们</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install --save-dev gulp-minify-css gulp-uglify gulp-concat gulp-rev gulp-rev-replace gulp-useref</span><br></pre></td></tr></table></figure>
+<h5 id="举个例子：合并压缩test-html文件中js文件并进行文件替换"><a href="#举个例子：合并压缩test-html文件中js文件并进行文件替换" class="headerlink" title="举个例子：合并压缩test.html文件中js文件并进行文件替换"></a>举个例子：合并压缩test.html文件中js文件并进行文件替换</h5><p>test.html文件如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- build:js(&#123;.tmp,src&#125;) dist_test/js/main-combo.js --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"a.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"b.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- endbuild --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>gulpfile.js文件如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">	minifycss = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>),       </span><br><span class="line">	uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</span><br><span class="line">	rev = <span class="built_in">require</span>(<span class="string">'gulp-rev'</span>),</span><br><span class="line">	revReplace = <span class="built_in">require</span>(<span class="string">'gulp-rev-replace'</span>),</span><br><span class="line">	useref = <span class="built_in">require</span>(<span class="string">'gulp-useref'</span>),</span><br><span class="line">	concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);</span><br><span class="line">gulp.task(<span class="string">'test-js'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> gulp.src([<span class="string">"a.js"</span>,<span class="string">"b.js"</span>])</span><br><span class="line">		.pipe(uglify())</span><br><span class="line">		.pipe(concat(<span class="string">'main-combo.js'</span>))</span><br><span class="line">		.pipe(rev())</span><br><span class="line">		.pipe(gulp.dest(<span class="string">"dist_test/js"</span>))</span><br><span class="line">		.pipe(rev.manifest())</span><br><span class="line">		.pipe(gulp.dest(<span class="string">"dist_test"</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'test'</span>, [<span class="string">"test-js"</span>],<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> manifest = gulp.src(<span class="string">"dist_test/rev-manifest.json"</span>);	</span><br><span class="line">	<span class="keyword">return</span> gulp.src(<span class="string">'test.html'</span>)</span><br><span class="line">		.pipe(useref())</span><br><span class="line">		.pipe(revReplace(&#123;<span class="attr">manifest</span>: manifest&#125;))</span><br><span class="line">		.pipe(gulp.dest(<span class="string">"dist_test"</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>生成的项目目录如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dist_test</span><br><span class="line">     js</span><br><span class="line">         main-combo-519cd1e2de.js</span><br><span class="line">     rev-manifest.json</span><br><span class="line">     test.html</span><br><span class="line">test.html</span><br><span class="line">a.js</span><br><span class="line">b.js</span><br></pre></td></tr></table></figure>
+<p>dist_test下的test.html的文件内容如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"dist_test/js/main-combo-519cd1e2de.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>好了，dist_test就是我们需要上线的文件了~</p>
+<blockquote>
+<p>PS：关于gulp-rev-replace的应用官方的例子我死活没有跑通，不知道什么原因，useref.assets()报错，console.log了下useref,居然没看到assets，所以用了上面提到的方法~</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> rev = <span class="built_in">require</span>(<span class="string">'gulp-rev'</span>);</span><br><span class="line"><span class="keyword">var</span> revReplace = <span class="built_in">require</span>(<span class="string">'gulp-rev-replace'</span>);</span><br><span class="line"><span class="keyword">var</span> useref = <span class="built_in">require</span>(<span class="string">'gulp-useref'</span>);</span><br><span class="line"><span class="keyword">var</span> filter = <span class="built_in">require</span>(<span class="string">'gulp-filter'</span>);</span><br><span class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"><span class="keyword">var</span> csso = <span class="built_in">require</span>(<span class="string">'gulp-csso'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"index"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> jsFilter = filter(<span class="string">"**/*.js"</span>);</span><br><span class="line"><span class="keyword">var</span> cssFilter = filter(<span class="string">"**/*.css"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> userefAssets = useref.assets();</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> gulp.src(<span class="string">"src/index.html"</span>)</span><br><span class="line"> .pipe(userefAssets)      <span class="comment">// Concatenate with gulp-useref </span></span><br><span class="line"> .pipe(jsFilter)</span><br><span class="line"> .pipe(uglify())             <span class="comment">// Minify any javascript sources </span></span><br><span class="line"> .pipe(jsFilter.restore())</span><br><span class="line"> .pipe(cssFilter)</span><br><span class="line"> .pipe(csso())               <span class="comment">// Minify any CSS sources </span></span><br><span class="line"> .pipe(cssFilter.restore())</span><br><span class="line"> .pipe(rev())                <span class="comment">// Rename the concatenated files </span></span><br><span class="line"> .pipe(userefAssets.restore())</span><br><span class="line"> .pipe(useref())</span><br><span class="line"> .pipe(revReplace())         <span class="comment">// Substitute in new filenames </span></span><br><span class="line"> .pipe(gulp.dest(<span class="string">'public'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/01/14/利用gulp实现前端代码的合并压缩/" data-id="cjhbpfquw000t0x1pu5xtd0l6" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/01/14/利用gulp实现前端代码的合并压缩/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodeJs/">nodeJs</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/01/26/web地图前端入门知识小总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          web地图前端入门知识小总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/13/come back/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">come back</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>利用d3-cloud来展现标签云 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="效果： http://lucyhao.com/tags/  最近把这个功能改成了hexo的plugin,这样更方便一点，地址：https://github.com/lucyhao/hexo-d3cloudtag   hexo自带的tag cloud的标签展现不太美观，想能够展现出“云”效果的标签。在网上找到了d3-cloud这个项目，github地址：https://github.com/jaso">
+<meta name="keywords" content="hexo,tagcloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用d3-cloud来展现标签云">
+<meta property="og:url" content="http://lucyhao.com/2016/02/22/利用d3-cloud来展现标签云/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="效果： http://lucyhao.com/tags/  最近把这个功能改成了hexo的plugin,这样更方便一点，地址：https://github.com/lucyhao/hexo-d3cloudtag   hexo自带的tag cloud的标签展现不太美观，想能够展现出“云”效果的标签。在网上找到了d3-cloud这个项目，github地址：https://github.com/jaso">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/ppt/tags.png">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用d3-cloud来展现标签云">
+<meta name="twitter:description" content="效果： http://lucyhao.com/tags/  最近把这个功能改成了hexo的plugin,这样更方便一点，地址：https://github.com/lucyhao/hexo-d3cloudtag   hexo自带的tag cloud的标签展现不太美观，想能够展现出“云”效果的标签。在网上找到了d3-cloud这个项目，github地址：https://github.com/jaso">
+<meta name="twitter:image" content="http://3gimg.qq.com/map_site_cms/dcfe/ppt/tags.png">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-利用d3-cloud来展现标签云" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用d3-cloud来展现标签云
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/02/22/利用d3-cloud来展现标签云/">
+      <time datetime="2016-02-22T09:34:50.000Z" itemprop="datePublished">2016-02-22</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <p>效果： <a href="http://lucyhao.com/tags/">http://lucyhao.com/tags/</a></p>
+<blockquote>
+<p>最近把这个功能改成了hexo的plugin,这样更方便一点，地址：<a href="https://github.com/lucyhao/hexo-d3cloudtag" target="_blank" rel="noopener">https://github.com/lucyhao/hexo-d3cloudtag</a></p>
+</blockquote>
+<hr>
+<p>hexo自带的tag cloud的标签展现不太美观，想能够展现出“云”效果的标签。在网上找到了d3-cloud这个项目，github地址：<a href="https://github.com/jasondavies/d3-cloud" target="_blank" rel="noopener">https://github.com/jasondavies/d3-cloud</a>  demo地址：<a href="https://www.jasondavies.com/wordcloud/" target="_blank" rel="noopener">https://www.jasondavies.com/wordcloud/</a>  </p>
+<p>hexo生成的是静态博客，所以最后在网上看到的都是静态的内容，也就是说，我们的看到的标签云也是静态的已经生成好的内容，并不会随着刷新页面而重新计算生成另外样式的标签云。</p>
+<p>当然d3-cloud这个项目，提供了浏览器端和node端运行的版本，见它的例子，我们可以在客户端运行，也可以在服务端作为  node运行。</p>
+<a id="more"></a>
+<h4 id="如何在hexo搭建的博客系统中使用呢？"><a href="#如何在hexo搭建的博客系统中使用呢？" class="headerlink" title="如何在hexo搭建的博客系统中使用呢？"></a>如何在hexo搭建的博客系统中使用呢？</h4><p>（1）hexo中提供的tag cloud.js的方法，在你的blog项目中，node_modules -&gt; hexo -&gt;plugins -&gt; helper -&gt; tagcloud.js</p>
+<p>（2）本博客使用的是icarus主题，在主题下的layout-&gt;tags.ejs 文件中加载目录tags下面的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//这里加载了标签云，tagcloud也就是(1)中tagcloud.js提供的功能</span><br><span class="line">  &lt;div class=&quot;layout-wrap-inner tag-cloud&quot;&gt;</span><br><span class="line">    &lt;% if(site.tags.length) &#123; %&gt;</span><br><span class="line">    	&lt;%- tagcloud() %&gt;	</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>由上所知 ，要修改hexo中的tagcloud, 只要修改tag cloud.js函数就可以啦～</p>
+<p>现在我们来看看d3-cloud这个项目，如何把它与tagcloud结合起来。 首先，d3-cloud提供了在浏览器和在服务端运行的方式，见他的例子node.js和browserify.js。两个不同版本的原因，是因为在计算字符串的宽度的时候，利用了canvas的mesureText接口。在d3-cloud的 index.js源码中可以看到，有一行代码是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cloudCanvas</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">document</span>.createElement(<span class="string">"canvas"</span>);<span class="comment">//生成虚拟的canvas</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为在计算标签云的时候，要保证标签之间不重叠，需要知道标签的宽度，高度；而js语言是不具备这个能力可以计算出来的，要不就是借助浏览器，生成一个dom，比如span标签，把字符串的内容放到span中，设置span的属性为字符串需要显示的属性，然后获取span的宽度。在d3-cloud中，则是直接利用canvas的接口来实现的。所以在客户端的版本中，浏览器提供的canvas功能；而在node版本中则需要 node-canvas模块。</p>
+<p>由于我们是在hexo的“后台”来运行标签云的算法，得到静态的构造好的标签输出到页面上，所以我们应该选择用node版本。当然也可以用browserify.js版本，毕竟他就是一个运行在浏览器中的js, 放到博客的js中也是可以的，后续会介绍。</p>
+<h5 id="利用node-canvas遇到的问题"><a href="#利用node-canvas遇到的问题" class="headerlink" title="利用node-canvas遇到的问题"></a>利用node-canvas遇到的问题</h5><blockquote>
+<p>node-canvas模块的mesureText对于中文的支持有bug，在chrome中，同样的中文字符串”你好”的宽度是33.＊；而用node-canvas的到的“你好”的宽度只有8.＊</p>
+</blockquote>
+<p>怎么办？我投机取巧的用两个英文字符“ab”代替一个中文字符，然后计算字符串的长度，这样的到的长度只是近似长度。</p>
+<h4 id="正式开始修改hexo的到d3-cloud的标签云"><a href="#正式开始修改hexo的到d3-cloud的标签云" class="headerlink" title="正式开始修改hexo的到d3-cloud的标签云"></a>正式开始修改hexo的到d3-cloud的标签云</h4><p>(1)安装需要的模块:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> npm install canvas --save</span><br><span class="line"><span class="meta">$</span> npm install d3-cloud --save</span><br><span class="line"><span class="meta">$</span> npm install d3 --save(可选)</span><br></pre></td></tr></table></figure>
+<p>(2)找到文件： 你的 blog项目 -&gt; node_modules -&gt; hexo -&gt;plugins -&gt; helper -&gt; index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tagcloud = <span class="built_in">require</span>(<span class="string">'./tagcloud'</span>);</span><br><span class="line">helper.register(<span class="string">'tagcloud'</span>, tagcloud);</span><br><span class="line">helper.register(<span class="string">'tag_cloud'</span>, tagcloud);</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改为下面的代码：目的是不直接修改tagcloud.js，保留代码</span></span><br><span class="line"><span class="keyword">var</span> tagcloud = <span class="built_in">require</span>(<span class="string">'./tagcloud'</span>);</span><br><span class="line"><span class="keyword">var</span> tagcloudd3 = <span class="built_in">require</span>(<span class="string">'./tagcloudd3'</span>);</span><br><span class="line">helper.register(<span class="string">'tagcloud'</span>, tagcloudd3);</span><br><span class="line">helper.register(<span class="string">'tag_cloud'</span>, tagcloudd3);</span><br></pre></td></tr></table></figure>
+<p>(3)新建文件tagcloudd3.js ：位置在blog项目 -&gt; node_modules -&gt; hexo -&gt;plugins -&gt; helper -&gt; tagcloudd3.js</p>
+<p>(4)tagcloudd3.js的 内容如下： </p>
+<ul>
+<li>代码中引用了d3 来给标签fill颜色，可以去掉，也可以像tagcloud一样根据是否需要颜色来设置</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Canvas = <span class="built_in">require</span>(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="keyword">var</span> cloud = <span class="built_in">require</span>(<span class="string">"d3-cloud"</span>);</span><br><span class="line"><span class="keyword">var</span> d3 = <span class="built_in">require</span>(<span class="string">"d3"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> layout = cloud()<span class="comment">//利用d3-cloud计算每个标签的位置</span></span><br><span class="line">    .size([<span class="number">600</span>, <span class="number">400</span>])</span><br><span class="line">    .canvas(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> Canvas(<span class="number">1</span>, <span class="number">1</span>); &#125;)</span><br><span class="line">    .padding(<span class="number">7</span>)</span><br><span class="line">    .rotate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> ~~(<span class="built_in">Math</span>.random() * <span class="number">2</span>) * <span class="number">90</span>; &#125;)</span><br><span class="line">    .font(<span class="string">"Impact"</span>)</span><br><span class="line">    .fontSize(<span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123; <span class="keyword">return</span> d.size; &#125;);</span><br><span class="line"><span class="keyword">var</span> fill = d3.scale.category20();<span class="comment">//利用d3的接口给每个标签颜色</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tagcloudHelper</span>(<span class="params">tags</span>)</span>&#123;</span><br><span class="line">  <span class="comment">/****与tagcloud.js一样，获得tags 开始***/</span></span><br><span class="line">  <span class="keyword">if</span> ((!tags || !tags.hasOwnProperty(<span class="string">'length'</span>)))&#123;</span><br><span class="line">    tags = <span class="keyword">this</span>.site.tags;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!tags || !tags.length) <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line">  tags = tags.sort(<span class="string">'name'</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Ignore tags with zero posts</span></span><br><span class="line">  tags = tags.filter(<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> tag.length;</span><br><span class="line">  &#125;);</span><br><span class="line"> <span class="comment">/****与tagcloud.js一样，获得tags 结束***/</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//计算标签出现次数最大值，比如，博客中一共有两个标签，一个是hello,一个是world,hello出现2次，world 出现1次，那么maxsize就是2</span></span><br><span class="line">  <span class="keyword">var</span> maxsize = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  tags.sort(<span class="string">'length'</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> length = tag.length;</span><br><span class="line">    <span class="keyword">if</span>(length &gt; maxsize)</span><br><span class="line">        maxsize = length;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"> <span class="comment">//构建传入layout的words</span></span><br><span class="line">  <span class="keyword">var</span> arr = [],words;</span><br><span class="line">  tags.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>)</span>&#123;</span><br><span class="line">     arr.push(&#123;<span class="string">"name"</span>: tag.name,<span class="string">"num"</span> : tag.length&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">  words = arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> text = d.name.replace(<span class="regexp">/[^\x00-\xff]/g</span>,<span class="string">"ab"</span>);<span class="comment">//对中文的投机处理，用ab代替中文字符</span></span><br><span class="line">      <span class="keyword">return</span> &#123;<span class="attr">name</span>:d.name, <span class="attr">text</span>: text, <span class="attr">size</span> : <span class="built_in">Math</span>.log(d.num)/(<span class="built_in">Math</span>.log(maxsize)-<span class="built_in">Math</span>.log(<span class="number">1</span>)) * <span class="number">15</span> + <span class="number">30</span>&#125;;<span class="comment">//size的计算取对数，是为了让标签之间的大小相对平均一些。因为博客侧重前端内容，所以某一些标签会比较多，标签最大最小次数的差距会比较大。</span></span><br><span class="line">    </span><br><span class="line">  &#125;);</span><br><span class="line">  layout.words(words);</span><br><span class="line">  layout.start();</span><br><span class="line"></span><br><span class="line">  result.push(<span class="string">'&lt;svg width="600" height="400"&gt;&lt;g transform="translate(300,200)"&gt;'</span>);</span><br><span class="line">  words.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">word,i</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    result.push(</span><br><span class="line">      <span class="string">'&lt;text text-anchor="middle" fill="'</span>+fill(i)+<span class="string">'" transform="translate('</span>+word.x+<span class="string">','</span>+word.y+<span class="string">')rotate('</span>+</span><br><span class="line">        word.rotate+<span class="string">')" style="font-size:'</span>+word.size+<span class="string">'px;font-family:Impact"&gt;'</span>+</span><br><span class="line">        word.name+</span><br><span class="line">      <span class="string">'&lt;/text&gt;'</span></span><br><span class="line">    );</span><br><span class="line">  &#125;);</span><br><span class="line">  result.push(<span class="string">'&lt;/g&gt;&lt;/svg&gt;'</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> result.join(<span class="string">''</span>);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = tagcloudHelper;</span><br></pre></td></tr></table></figure>
+<p>(5)运行hexo</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo s</span><br></pre></td></tr></table></figure>
+<p>如图所示得到自己的标签云：</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/ppt/tags.png" alt="tags"></p>
+<p>(6)上传自己的博客,  没问题以后，就生成静态博客，并上传</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> hexo g</span><br><span class="line"><span class="meta">$</span> hexo d</span><br></pre></td></tr></table></figure>
+<h5 id="简单说下在客户端引用d3-cloud"><a href="#简单说下在客户端引用d3-cloud" class="headerlink" title="简单说下在客户端引用d3-cloud"></a>简单说下在客户端引用d3-cloud</h5><p>(1) browserify编译d3-cloud提供的browserify.js例子，得到tagtest.js 文件，里面把d3,d3-cloud，d3-dispatch打包到了一起</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> browserify broswerify.js &gt; tagtest.js</span><br></pre></td></tr></table></figure>
+<p>(2)把index.js放到目录: 你的主题－&gt;source -&gt; js -&gt; tagtest.js</p>
+<p>(3)把index引用入到你的主题中 &lt;%- js(‘js/tagtest’) %&gt;</p>
+<p>(4)修改tagtest.js中的代码，把words的部分修改成接受传参的形式，在tags.ejs中用site.tags把tags的参数传进去</p>
+<blockquote>
+<p>这样会在博客中引入一大段js,个人觉得有点不符合静态博客小而轻～</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/02/22/利用d3-cloud来展现标签云/" data-id="cjhbpfquu000p0x1pq702ek6x" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/02/22/利用d3-cloud来展现标签云/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tagcloud/">tagcloud</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/19/【译】使用supertest来测试API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          【译】使用supertest来测试API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/03/简单聊聊touch事件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">简单聊聊touch事件</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>尝试写一下对象的序列化 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题: 如何把一个object序列化的显示?这种需求其实还是很多的, 主要都是为了方便查看object.  比如一个object , {“name”:”lucyhao”,”age”:”18”}, 显示成如下 1234&amp;#123;	&quot;name&quot; : &quot;lucyhao&quot;,	&quot;age&quot; : &quot;18&quot;&amp;#125; 首先说明一下JSON.stringify已经把序列化的工作做了,并且很全面,在实际的需求中">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="尝试写一下对象的序列化">
+<meta property="og:url" content="http://lucyhao.com/2016/08/19/尝试写一下对象的序列化/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="问题: 如何把一个object序列化的显示?这种需求其实还是很多的, 主要都是为了方便查看object.  比如一个object , {“name”:”lucyhao”,”age”:”18”}, 显示成如下 1234&amp;#123;	&quot;name&quot; : &quot;lucyhao&quot;,	&quot;age&quot; : &quot;18&quot;&amp;#125; 首先说明一下JSON.stringify已经把序列化的工作做了,并且很全面,在实际的需求中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="尝试写一下对象的序列化">
+<meta name="twitter:description" content="问题: 如何把一个object序列化的显示?这种需求其实还是很多的, 主要都是为了方便查看object.  比如一个object , {“name”:”lucyhao”,”age”:”18”}, 显示成如下 1234&amp;#123;	&quot;name&quot; : &quot;lucyhao&quot;,	&quot;age&quot; : &quot;18&quot;&amp;#125; 首先说明一下JSON.stringify已经把序列化的工作做了,并且很全面,在实际的需求中">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-尝试写一下对象的序列化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      尝试写一下对象的序列化
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/08/19/尝试写一下对象的序列化/">
+      <time datetime="2016-08-19T02:20:46.000Z" itemprop="datePublished">2016-08-19</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>问题: 如何把一个object序列化的显示?这种需求其实还是很多的, 主要都是为了方便查看object.</p>
+</blockquote>
+<p>比如一个object , {“name”:”lucyhao”,”age”:”18”}, 显示成如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"name"</span> : <span class="string">"lucyhao"</span>,</span><br><span class="line">	<span class="string">"age"</span> : <span class="string">"18"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先说明一下JSON.stringify已经把序列化的工作做了,并且很全面,在实际的需求中,能够使用就不要自己写了.</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify</a></p>
+<ul>
+<li>解析object/array, 基本思路,<em>读取 object和key和value,  把key和value组合成一个字符串放到数组中,最后把数组连接起来,比如[‘“name”:”lucyhao”\n’,’”age”:”18”\n’].join(‘’). 如果在解析的过程中遇到object/array, 递归的解析</em></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> level = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> space = <span class="string">"    "</span>;<span class="comment">//解析出来每一行前面的格式</span></span><br><span class="line"><span class="keyword">var</span> beautify = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> _str = value;</span><br><span class="line">	level++;</span><br><span class="line">	<span class="keyword">var</span> _l = level;</span><br><span class="line">	<span class="keyword">var</span> tab = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">var</span> endTab = <span class="string">""</span>;</span><br><span class="line">	<span class="comment">//每一层(因为会递归的计算)的起始字符与结束字符</span></span><br><span class="line">	<span class="keyword">while</span>(_l &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(_l &gt; <span class="number">1</span>)&#123;</span><br><span class="line">			endTab += space;</span><br><span class="line">		&#125;</span><br><span class="line">		tab += space;</span><br><span class="line">		_l --;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//中间的解析部分(object/array的解析)</span></span><br><span class="line">		<span class="keyword">var</span> jsonStr = [];</span><br><span class="line"></span><br><span class="line">	level--;</span><br><span class="line">	<span class="keyword">return</span> jsonStr.join(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>中间的解析部分, 就是对object/array的解析</p>
+<p>(1)object的解析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _beautifyJSON = <span class="function"><span class="keyword">function</span>(<span class="params">value,tab,endTab</span>)</span>&#123;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">var</span> _str = value;</span><br><span class="line">	<span class="keyword">var</span> jsonStr = [];</span><br><span class="line">	jsonStr.push(<span class="string">"&#123;\n"</span>);<span class="comment">//开头的花括号</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> _str)&#123;</span><br><span class="line">	<span class="comment">//只解析可枚举的属性</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span>(_str[key]) == <span class="string">"object"</span>)&#123;</span><br><span class="line">			<span class="comment">//如果是对象,递归调用对象的解析</span></span><br><span class="line">			<span class="keyword">var</span> object = beautify(_str[key]);</span><br><span class="line">			<span class="keyword">if</span>(object === <span class="literal">false</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				jsonStr.push(tab+<span class="string">'"'</span>+key+<span class="string">'":'</span>+object+<span class="string">"\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		  <span class="comment">//如果不是,加入到数组中</span></span><br><span class="line">		  jsonStr.push(tab+<span class="string">'"'</span>+key+<span class="string">'":'</span>+beautifyType(_str[key])+<span class="string">"\n"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	jsonStr.push(endTab+<span class="string">"&#125;"</span>);<span class="comment">//结尾的花括号</span></span><br><span class="line">	<span class="keyword">return</span> jsonStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(2)array的解析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _beautifyJSONArray = <span class="function"><span class="keyword">function</span>(<span class="params">value,tab,endTab</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> _str = value;</span><br><span class="line">	<span class="keyword">var</span> jsonStr = [];</span><br><span class="line">	jsonStr.push(<span class="string">"[\n"</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ;i&lt;_str.length ;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span>(_str[i]) == <span class="string">"string"</span> || <span class="keyword">typeof</span>(_str[i]) == <span class="string">"number"</span>)&#123;</span><br><span class="line">            <span class="comment">//字符串或者数据,直接加入数组</span></span><br><span class="line">			<span class="keyword">if</span>(i == _str.length <span class="number">-1</span>)&#123;</span><br><span class="line">				jsonStr.push(tab+beautifyType(_str[i])+<span class="string">"\n"</span>)</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				jsonStr.push(tab+beautifyType(_str[i])+<span class="string">",\n"</span>)</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="comment">//对象,递归的调用对象的解析</span></span><br><span class="line">			<span class="keyword">var</span> object = beautify(_str[i]);</span><br><span class="line">			<span class="keyword">if</span>(object === <span class="literal">false</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(i == _str.length <span class="number">-1</span>)&#123;</span><br><span class="line">					jsonStr.push(tab+object+<span class="string">"\n"</span>)</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					jsonStr.push(tab+object+<span class="string">",\n"</span>)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	jsonStr.push(endTab+<span class="string">"]"</span>);</span><br><span class="line">	<span class="keyword">return</span> jsonStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实上面已经完成了核心的功能,  但是如何这是一道面试官出的题, 这个时候面试官就会说, 你再考虑下有没有什么情况没考虑到. 看下JSON.stringify规范<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-json.stringify" target="_blank" rel="noopener">http://www.ecma-international.org/ecma-262/6.0/#sec-json.stringify</a></p>
+<p>就会发现, 除了算法, 里面还有NOTE1 - NOTE6</p>
+<h6 id="NOTE1-要注意循环的情况-如果有循环-需要抛出错误"><a href="#NOTE1-要注意循环的情况-如果有循环-需要抛出错误" class="headerlink" title="NOTE1 : 要注意循环的情况. 如果有循环, 需要抛出错误."></a>NOTE1 : 要注意循环的情况. 如果有循环, 需要抛出错误.</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [];</span><br><span class="line">a[<span class="number">0</span>] = a;</span><br><span class="line">my_text = <span class="built_in">JSON</span>.stringify(a); <span class="comment">//This must throw a TypeError.</span></span><br></pre></td></tr></table></figure>
+<p> 所以我们还需要考虑循环的情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isCircle</span>(<span class="params">a,aStack</span>)</span>&#123;</span><br><span class="line">	aStack = aStack || [];</span><br><span class="line">	<span class="keyword">var</span> length = aStack.length;</span><br><span class="line">	<span class="keyword">while</span>(length--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(aStack[length] === a)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	aStack.push(a);</span><br><span class="line">	<span class="keyword">var</span> keys = getkeys(a);</span><br><span class="line">	length = keys.length;</span><br><span class="line">	<span class="keyword">while</span> (length--) &#123;</span><br><span class="line">        <span class="keyword">var</span> key = keys[length];</span><br><span class="line">        <span class="keyword">if</span> (isCircle(a[key],aStack))&#123;</span><br><span class="line">        	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	aStack.pop();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="NOTE2-符号的显示"><a href="#NOTE2-符号的显示" class="headerlink" title="NOTE2: 符号的显示"></a>NOTE2: 符号的显示</h6><ul>
+<li>null 会解析成字符串null显示</li>
+<li>true/false 会解析成字符串true/false显示</li>
+<li>undefined ,不会解析</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//解析json的时候,对不同的类型进行不同的显示;大多数类型都转换成string进行显示</span></span><br><span class="line"><span class="comment">//Object.prototype.toString 可以判断是什么类型</span></span><br><span class="line"><span class="keyword">var</span> beautifyType = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> type = <span class="built_in">Object</span>.prototype.toString.call(value);</span><br><span class="line">	<span class="keyword">switch</span> (type) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'[object String]'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'[object Boolean]'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'[object Null]'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'[object RegExp]'</span>:</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'[object Date]'</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="string">'"'</span>+value+<span class="string">'"'</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'[object Number]'</span>:</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">isNaN</span>(value) || value === <span class="literal">Infinity</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="string">"null"</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> +value;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">	  	<span class="keyword">case</span> <span class="string">'[object Array]'</span>:</span><br><span class="line">	  	<span class="keyword">case</span> <span class="string">'[object Object]'</span>:</span><br><span class="line">	    	<span class="keyword">return</span> value;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'[object Undefined]'</span>:</span><br><span class="line">	    <span class="keyword">case</span> <span class="string">'[object Function]'</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">undefined</span>; <span class="comment">//在外层判断是undefined,不进行解析;也可以在外层判断出undefined之后,就不进行类型转换显示</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="NOTE3-字符串包裹在””之间显示-双引号和右斜线前加-控制字符做转义显示-uHHHH-或者用短些形式，比如-b-f-n-r-t-此条中对于控制字符的，自己没有给出例子，所以实在不知如何写"><a href="#NOTE3-字符串包裹在””之间显示-双引号和右斜线前加-控制字符做转义显示-uHHHH-或者用短些形式，比如-b-f-n-r-t-此条中对于控制字符的，自己没有给出例子，所以实在不知如何写" class="headerlink" title="NOTE3 : 字符串包裹在””之间显示; 双引号和右斜线前加\;控制字符做转义显示\uHHHH,或者用短些形式，比如\b,\f,\n,\r,\t (此条中对于控制字符的，自己没有给出例子，所以实在不知如何写)"></a>NOTE3 : 字符串包裹在””之间显示; 双引号和右斜线前加\;控制字符做转义显示\uHHHH,或者用短些形式，比如\b,\f,\n,\r,\t (此条中对于控制字符的，自己没有给出例子，所以实在不知如何写)</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于字符串包裹在双引号之类的，见note2</span></span><br><span class="line"><span class="comment">//对于双引号加\的</span></span><br><span class="line">value.replace(<span class="regexp">/\"/g</span>,<span class="string">'\\\"'</span>);</span><br><span class="line"><span class="comment">//对于\ 变\\的,因为\本身是转义符，如果要有"\"符号本身，js 应该\\这样写，</span></span><br><span class="line"><span class="comment">//var a = "\sdfsfd";  其实 a = "sdfsfd" 如果要表达\字符的意思，应该是var a = "\\sdfsfd";</span></span><br><span class="line"><span class="comment">//所以看起来好像也不用做什么，因为我们是在用js来做这个算法</span></span><br></pre></td></tr></table></figure>
+<h6 id="NOTE4-NaN-和Infinity会被解析成字符串null-（见note2）"><a href="#NOTE4-NaN-和Infinity会被解析成字符串null-（见note2）" class="headerlink" title="NOTE4: NaN 和Infinity会被解析成字符串null （见note2）"></a>NOTE4: NaN 和Infinity会被解析成字符串null （见note2）</h6><h6 id="NOTE5-undefined和function这类，不会解析-（见note2）"><a href="#NOTE5-undefined和function这类，不会解析-（见note2）" class="headerlink" title="NOTE5: undefined和function这类，不会解析 （见note2）"></a>NOTE5: undefined和function这类，不会解析 （见note2）</h6><h6 id="NOTE6-对于最后json解析出来呈现的样子，规定了左花括号开始，属性用逗号隔开，右花括号结束。属性后面带冒号，属性值。数组左方括号，值之间用逗号隔开，又方括号"><a href="#NOTE6-对于最后json解析出来呈现的样子，规定了左花括号开始，属性用逗号隔开，右花括号结束。属性后面带冒号，属性值。数组左方括号，值之间用逗号隔开，又方括号" class="headerlink" title="NOTE6: 对于最后json解析出来呈现的样子，规定了左花括号开始，属性用逗号隔开，右花括号结束。属性后面带冒号，属性值。数组左方括号，值之间用逗号隔开，又方括号"></a>NOTE6: 对于最后json解析出来呈现的样子，规定了左花括号开始，属性用逗号隔开，右花括号结束。属性后面带冒号，属性值。数组左方括号，值之间用逗号隔开，又方括号</h6><hr>
+<p>最近被问好多比如如何判断类型这样的问题，突然有个需求把json字符串解析出来显示，就尝试自己写一下. PS : 还是JSON.stringify考虑的全，还可以往里面传function,指名解析哪些属性等。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/08/19/尝试写一下对象的序列化/" data-id="cjhbpfquy000x0x1p8mbqv92g" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/08/19/尝试写一下对象的序列化/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/10/利用d3画地图/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          利用d3画地图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/27/前端流程化的一些方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">前端流程化的一些方案</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

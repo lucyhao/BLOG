@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>移动web开发初级攻略 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是纪录在移动端web开发的时候最基本的一些入门知识  这是一篇普及性质的文章，内容浅显明了。也算是对移动web开发的入门做了一个总结式的简介。已经有移动web开发经验的同学可以绕道，还没有入门的同学可以留意下，也许你能从此跨入移动web开发的大门，希望你能有所收获。 整篇的内容会分为5个部分，第一部分是关于">
+<meta name="keywords" content="移动web开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动web开发初级攻略">
+<meta property="og:url" content="http://lucyhao.com/2016/02/03/移动web开发初级攻略/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是纪录在移动端web开发的时候最基本的一些入门知识  这是一篇普及性质的文章，内容浅显明了。也算是对移动web开发的入门做了一个总结式的简介。已经有移动web开发经验的同学可以绕道，还没有入门的同学可以留意下，也许你能从此跨入移动web开发的大门，希望你能有所收获。 整篇的内容会分为5个部分，第一部分是关于">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/flexbox.png">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/main.png">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/pixel.png">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/view.jpg">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/layer.png">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/touch.jpg">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/click.png">
+<meta property="og:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/slide.png">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动web开发初级攻略">
+<meta name="twitter:description" content="这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是纪录在移动端web开发的时候最基本的一些入门知识  这是一篇普及性质的文章，内容浅显明了。也算是对移动web开发的入门做了一个总结式的简介。已经有移动web开发经验的同学可以绕道，还没有入门的同学可以留意下，也许你能从此跨入移动web开发的大门，希望你能有所收获。 整篇的内容会分为5个部分，第一部分是关于">
+<meta name="twitter:image" content="http://3gimg.qq.com/map_site_cms/dcfe/blog/flexbox.png">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-移动web开发初级攻略" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      移动web开发初级攻略
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2016/02/03/移动web开发初级攻略/">
+      <time datetime="2016-02-03T02:30:56.000Z" itemprop="datePublished">2016-02-03</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>这几天在整理之前的内容，把散落在各地的东西都整理在一起，一篇14年的文章，收录到这里;主要是纪录在移动端web开发的时候最基本的一些入门知识</p>
+</blockquote>
+<p>这是一篇普及性质的文章，内容浅显明了。也算是对移动web开发的入门做了一个总结式的简介。已经有移动web开发经验的同学可以绕道，还没有入门的同学可以留意下，也许你能从此跨入移动web开发的大门，希望你能有所收获。</p>
+<p>整篇的内容会分为5个部分，第一部分是关于移动端的常用布局思路，第二部关于图片和文字，第三部分是动画，第四部分是事件，最后一部分是关于单页应用。</p>
+<a id="more"></a>
+<h4 id="关于布局"><a href="#关于布局" class="headerlink" title="关于布局"></a>关于布局</h4><blockquote>
+<p>攻略推荐：flexbox。flexbox弹性布局，背后的思想就是使得容器中的项目块能够改变宽度和高度来最佳地填充可用的空间（为了适应不同类型的设备和屏幕宽度）。在移动端利用flexbox可以简单方便的满足我们的很多需求。我们先看看它在移动端的支持情况吧。</p>
+</blockquote>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/flexbox.png" alt="flexbox的适用性"></p>
+<p>图1 flexbox的适用性</p>
+<p>图来自caniuse网站, 大家可以通过此网站查询关于css3和html5的浏览器支持情况。图1只是部分的支持情况，完整的图可以自行在caniuse网站上查看。从图1可以看出，flexbox在移动端的支持情况还是很乐观的，另外Android2.3也是支持的，不过是支持老版本的规范而已。</p>
+<p>简单说明下，flexbox的语法到目前为止有三种，最老的是09年的老语法（display：box），其次是11年的语法（display：flexbox），然后才是最新的语法（display：flex）。不同的浏览器使用flexbox的时候，css的前缀也不相同。有工具<a href="http://the-echoplex.net/flexyboxes/" target="_blank" rel="noopener">flexbox兼容语法工具</a>方便大家能够写出兼容的flexbox代码。</p>
+<p>flexbox的大致情况如上所述，它的主要用途在于组件级的布局，下面列举一个最常见的上中下三列布局。如下图2所示，在实际的开发过程中，我们会遇到这样的需求。在内容不满一屏的时候，主内容区域也需要撑满整个空白的区域，尾部位于最低端。</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/main.png" alt="主内容撑满整个空白区域"></p>
+<p>图2 主内容撑满整个空白区域</p>
+<p>在PC上，我们会很自然的想到利用position:fixed的属性来解决固定的问题，可是在移动端position:fixed因为支持程度的问题（Android2.X和IOS5之下）不得不抛弃，取而代之的利用flexbox的属性来解决。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTML代码片断:</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span>header<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"footer"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">css</span>代码片断:</span><br><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">       <span class="attribute">position</span>:absolute;<span class="attribute">top</span>:<span class="number">0px</span>;<span class="attribute">bottom</span>: <span class="number">0</span>;<span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">right</span>: <span class="number">0px</span>;</span><br><span class="line">       <span class="attribute">height</span>: <span class="number">100%</span>;<span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">       <span class="attribute">overflow</span>:hidden</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">min-height</span>:<span class="number">100%</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">display</span>: -moz-box;</span><br><span class="line">    <span class="attribute">display</span>: -ms-flexbox;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">-webkit-box-direction</span>: normal;</span><br><span class="line">    <span class="attribute">-moz-box-direction</span>: normal;</span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">    <span class="attribute">-moz-box-orient</span>: vertical;</span><br><span class="line">    <span class="attribute">-webkit-flex-direction</span>: column;</span><br><span class="line">    <span class="attribute">-ms-flex-direction</span>: column;</span><br><span class="line">     <span class="attribute">flex-direction</span>: column;</span><br><span class="line">     <span class="attribute">-webkit-flex-wrap</span>: nowrap;</span><br><span class="line">     <span class="attribute">-ms-flex-wrap</span>: nowrap;</span><br><span class="line">     <span class="attribute">flex-wrap</span>: nowrap;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">30px</span>;<span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">   <span class="attribute">width</span>: <span class="number">100%</span>;<span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">   <span class="attribute">flex-grow</span>:<span class="number">1</span>;</span><br><span class="line">   <span class="attribute">-moz-box-flex</span>: <span class="number">1</span>;</span><br><span class="line">   <span class="attribute">-webkit-box-flex</span>: <span class="number">1</span>;</span><br><span class="line">   <span class="attribute">box-flex</span>: <span class="number">1</span>;</span><br><span class="line">   <span class="attribute">overflow</span>:auto</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.footer</span>&#123;</span><br><span class="line">   <span class="attribute">width</span>:<span class="number">100%</span>;<span class="attribute">height</span>:<span class="number">30px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段css里面包括了很多兼容性的代码。再比如一个最常见的问题：完美居中。用flexbox的属性进行布局就再简单优美不过了。如下面css代码段。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">height </span>: <span class="number">300px</span> <span class="comment">/*或者其他*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>; <span class="comment">/*或者其他*/</span></span><br><span class="line">　　<span class="attribute">height</span>: <span class="number">100px</span>; <span class="comment">/*或者其他*/</span></span><br><span class="line">　　<span class="attribute">margin</span>: auto; <span class="comment">/*这里就是神奇的地方*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完美居中的原理就是依赖于margin值设置为auto来吸收到额外的空间。所以设置一个margin为auto 的值能够使得内容完美的居中于两个轴之间。</p>
+<p>flexbox的各种属性还有很多有趣又实用的用法，大家平时可以多多积累一些。最后列举一些w3c定义的最新flexbox的属性。</p>
+<p>在父元素上使用的属性：</p>
+<ul>
+<li>display:flex 定义弹性容器</li>
+</ul>
+<ul>
+<li>flex-direction 定义弹性内容主轴的方向</li>
+</ul>
+<ul>
+<li>justify-content 定义弹性内容主轴的空白内容区域</li>
+</ul>
+<ul>
+<li>align-items 定义弹性内容交叉轴的方向</li>
+</ul>
+<ul>
+<li>align-content 定义弹性内容交叉轴的空白内容区域</li>
+</ul>
+<p>在子元素上使用的属性：</p>
+<ul>
+<li>order 定义弹性内容的顺序</li>
+</ul>
+<ul>
+<li>flex-grow 定义弹性内容增长</li>
+</ul>
+<ul>
+<li>flex-shrink 定义弹性内容收缩</li>
+</ul>
+<ul>
+<li>flex-basis 定义弹性内容基准伸缩值</li>
+</ul>
+<ul>
+<li>align-self 覆盖默认的对齐方式</li>
+</ul>
+<h4 id="关于图片和文字"><a href="#关于图片和文字" class="headerlink" title="关于图片和文字"></a>关于图片和文字</h4><h5 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h5><p>要彻底的讲清楚移动端的图片设置其实还是一个巨大的工作量，需要从设备分辨率说起。简单来说有下面几条：</p>
+<p>(1) 设备像素比 = 物理像素/设备独立像素</p>
+<p>(2) 常用的针对移动端的优化设置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>(3) 如果设备像素比计算出来是1，根据(2)的设置那么页面也是1：1显示在屏幕上；如果设备像素比计算出来是2，那么页面会2：1的显示在屏幕上，此时图片就会被拉大到成原来的2倍。</p>
+<p>上面的3条会引发出三个问题：第2条的设置有什么作用？计算出来的设备像素比是什么？设备像素比为什么会影响页面的显示？</p>
+<p>回答第一个问题：width=device-width 表示页面宽度等于设备宽度，也就是说页面会以设备宽度的大小显示出来。这个时候，如果页面宽度与设备宽度匹配，假设都是320px，那么页面就是1：1的显示在屏幕上。如果页面宽度是320px，而设备宽度是640px，那么页面就会被拉大一倍显示在屏幕上。</p>
+<p>回答第二个问题：物理像素就是设备实际的显示像素，在市面上看到的设备指标中的像素，比如某设备是640×480的像素，他的宽的物理像素就是640px；设备独立像素（dip或dp），1dp表示在屏幕点密度为160ppi时1px长度。可以用公式px=dp( ppi/160) 计算，公式可以变成px/dp = ppi/160，所以其实设备像素比，可以直接用ppi/160来计算。ppi是每英寸像素数，计算方法就是长宽各自平方之和开方，除以对角线长度（单位英寸）。比如：WVGA屏480*800，按3.8寸屏算，ppi就是 √ (480^2 + 800^2) / 3.8 = 245，约等于240，px/dp=1.5。</p>
+<p>回答第三个问题：先看图3，retina屏（视网膜屏）的设备像素比是2，相对于非视网膜屏用1个像素显示，就需要4个像素来显示。假设我们的图片是50×50px大小的，在非视网膜屏上，图片上的一个1×1的像素对应于显示屏的1×1像素，正常显示；在视网膜屏上，图片上的一个1×1的像素就对应于显示屏的2×2像素，相当于把1个点放大在了4个点的宽高上，所以图像就虚了。</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/pixel.png" alt="高清屏上像素的显示"></p>
+<p>图3  高清屏上像素的显示</p>
+<p>所以，常常在设计的时候，会按照200%的比例来设计，一个宽度设置为50px的图片，实际上的大小是100px，这样可以兼容支持像配备retina屏的iPhone那样的像素密度高达320 dpi及以上的设备。不过这也同时会造成图片大小变大，页面速度、流量等问题的出现。</p>
+<p>在实践中有以下几个思路：</p>
+<blockquote>
+<ul>
+<li>最简单的方法高清大图仍然采用2倍的jpg图片；优化一些的方法，利用媒体查询-webkit-device-pixel-ratio来设置不同设备分辨率的图片 @media screen and (-webkit-device-pixel-ratio：2){ /<em>设备分辨率2时候的样式</em>/ }</li>
+</ul>
+<ul>
+<li>小icon图，能用css伪类<a href="http://nicolasgallagher.com/pure-css-gui-icons/demo/" target="_blank" rel="noopener">css伪类写的各种图标</a>写的就不用图片了；webfonts在酷派手机上会有问题，保守还是直接用图吧</li>
+</ul>
+<ul>
+<li>延迟加载、按需加载减少一次请求所有图片的手段也是需要同步加上的</li>
+</ul>
+</blockquote>
+<p>顺带提一下设置全屏的背景图片时，宽大于高的图，如下代码段1会全屏撑开；高大于宽的图片，把background-size改成auto 100%。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">代码段1：</span><br><span class="line"><span class="selector-tag">background-image</span><span class="selector-pseudo">:url(..)</span>;</span><br><span class="line"><span class="selector-tag">background-size</span><span class="selector-pseudo">:100</span>% <span class="selector-tag">auto</span>;</span><br><span class="line"><span class="selector-tag">background-repeat</span>: <span class="selector-tag">no-repeat</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h5><p>文字的大小也是我们在做网页的时候必须要设置的，关于px，em，rem单位度量的差别也是有各种文章详细的介绍。其中em和rem的区别在于，rem是相对于根元素的大小，em是相对于父元素的大小。移动端不考虑ie的情况，使用rem和em还是很推荐的。鉴于em的基准是相对于父元素，很容易计算出错，利用rem就比较简单。</p>
+<p>如下例子所示，定义基准的根元素的大小，然后利用rem定义子元素的相对大小，同时利用media query来控制不同可视区域时根元素的字体大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>&#123;</span><br><span class="line">    <span class="attribute">font-size </span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line">@<span class="keyword">media</span> (max-width:<span class="number">900px</span>)&#123;</span><br><span class="line">    html&#123;font-size：14px&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">3rem</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h2</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">2.5rem</span></span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>对于是否是“最佳实践”的问题，有一篇将<a href="http://responsivenews.co.uk/post/13925578846/fluid-grids-orientation-resolution-independence" target="_blank" rel="noopener">响应式布局的文章</a>给出了这样的设置：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">858px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">780px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">11px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">702px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> (min-width: <span class="number">724px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">9px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> (max-width: <span class="number">623px</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span> &#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">8px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最后给出一些建议：</p>
+<ul>
+<li>使用16px的基准字体大小</li>
+</ul>
+<ul>
+<li>利用media query来调整基准的字体大小</li>
+</ul>
+<ul>
+<li>使用相对于基准字体大小的字体来排版</li>
+</ul>
+</blockquote>
+<h4 id="关于动画"><a href="#关于动画" class="headerlink" title="关于动画"></a>关于动画</h4><p>css3在移动端的支持程度，使得我们在移动端的很多动画效果都可以直接采用css3来实现。当然关于css动画和javascript动画的性能问题也是讨论的轰轰烈烈。一句话概括就是各有利弊，各有千秋。</p>
+<p>浏览器在处理css动画的时候是与“主线程”分开的，所谓的“主线程”就是javascript执行比如“布局”、“绘制”、“排版”这样的事情。所以这就意味着，当浏览器的主线程在工作的时候，css动画也能照常工作。transform和opacity这两个属性的改变，很多情况下是可以同时在css动画的线程中执行的，这两部分的改变也可以坚持使用css动画。</p>
+<p>一些简单的，改变自己状态的UI元素的动画建议使用css动画；比如toggle这样的动画（出现、消失的来回切换）。</p>
+<p>需要控制动画状态的，比如结束、暂停等动画，使用javascript。基于javascript的动画框架很多时候都能比基于css的动画框架提供更灵活、更复杂的动画效果。当然这些动画框架是纯为动画而生，并不是像jQuery这类核心在处理dom的框架，比如velocity.js、GSAP等。</p>
+<p>不管是css动画还是javascipt动画只要触发了reflow和repaint，“主线程”都会被迫去工作。简单的移动翻转等动画能够使得页面看起来更加的酷炫，可是过多地使用动画也必然会照成页面出现卡顿等的现象。下面则会提到一些常用的优化手段。</p>
+<p>（1）能用transition实现的动画，就不用animation（@keyframes）比如：</p>
+<p>用transition实现旋转一圈360度：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"anim"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.anim&#123;</span><br><span class="line">         -webkit-transition: all 1.5s linear;</span><br><span class="line">&#125;</span><br><span class="line">.anim:hover&#123;</span><br><span class="line">         -webkit-transform: rotate(360deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用animation实现：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"anim"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">.anim:hover&#123;</span><br><span class="line">     -webkit-animation-name:loading;</span><br><span class="line">     -webkit-animation-duration: 1.5s;</span><br><span class="line">     -webkit-animation-iteration-count:once;</span><br><span class="line">     -webkit-animation-timing-function: linear;</span><br><span class="line">&#125;</span><br><span class="line">@-webkit-keyframes loading&#123;</span><br><span class="line">     from &#123;-webkit-transform:rotate(0deg)&#125;</span><br><span class="line">     to &#123;-webkit-transform:rotate(360deg)&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>transition和animation有它们各自的适用场景，transition主要处理的是两个状态的变化，它的发生需要一些触发动作，比如:hover，media query的控制，class的改变等；animation可以用来处理更复杂一些的动画，不只是两个状态的变化，并且它的触发可以不通过用户的交互产生。</p>
+<p>（2）使用translate3d(0,0,0)，强制浏览器进行硬件加速；不要使用过多，以免崩溃。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">css</span>代码段:</span><br><span class="line"><span class="selector-tag">-webkit-transform</span>: <span class="selector-tag">translateZ</span>(0);</span><br><span class="line"><span class="selector-tag">-webkit-backface-visibility</span><span class="selector-pseudo">:hidden</span>;</span><br><span class="line"><span class="selector-tag">-webkit-perspective</span><span class="selector-pseudo">:1000</span>;</span><br></pre></td></tr></table></figure>
+<p>硬件加速其实就是强制创建一个GPU层，把动画放到GPU上去完成，这样就不占用CPU的资源。一旦GPU层创建出来，GPU来处理像素的移动和复合是一件微不足道的事情。使用过多会造成性能下降的原因。</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/view.jpg" alt="浏览器渲染的过程"></p>
+<p>图4 浏览器渲染过程</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/layer.png" alt="过多的使用硬件加速浏览器的渲染情况"></p>
+<p>图5 <a href="http://wesleyhales.com/blog/2013/10/26/Jank-Busting-Apples-Home-Page/" target="_blank" rel="noopener">过多的使用硬件加速浏览器的渲染情况</a></p>
+<p>图4是浏览器渲染的一个过程，我们就看最后一步composite layers合并图层。从图4中也可以看到transform和opacity两个属性只会影响到最后一步，不会产生严重的reflow和repaint，也印证了上面说的，这两个属性的改变大胆使用css动画。更重要的是，从图5（来自苹果官网分析的文章，见脚注5）我们看到，过多的GPU加速，虽然减少了浏览器前面步骤的开销，但是会大大加重最后一步合并图层的操作，甚至到了秒级。这也会严重影响页面的性能。如何优化这部分，可以在脚注5的文章中查到，利用chrome的开发者工具提供的功能，可以直接观察到页面上有哪些composite层，减少没有transform和opacity属性改变层的硬件加速能很好的解决滥用硬件加速的问题。</p>
+<p>（3）javascript做动画的时候，使用requestAnimationFrame，避免使用setTimeout和setInterval。</p>
+<p>在日常的页面性能中，动画达到60帧(frame per second，60fps)，就被视为一个理想的状态。60帧意味着16.7毫秒绘制一帧，如果使用setTimeout或者setInterval显然是不能达到要求的。这又牵扯到浏览器内置时钟的更新频率问题。总之，由于精确度的原因，使用setTimeout和setInterval是无法达到60帧这样的动画流程要求。</p>
+<h4 id="关于事件"><a href="#关于事件" class="headerlink" title="关于事件"></a>关于事件</h4><p>也许这部分是改变最多的，实际运用中却可能也是改变最少的。说改变最多是因为我们已经进入了全新的touch时代，说改变最少是因为在实际操作中，用click等点击事件，也是可以的。移动和PC在事件上的一个很大区别就是，移动端新增了很多强大的手势操作，如图6所示，所有的手势都可以通过移动端内置的touchstart、touchmove、touchend、touchcancel等事件进行封装实现。</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/touch.jpg" alt="移动端的各种手势"></p>
+<p>图6  移动端的各种手势</p>
+<p>关于事件这部分有几个注意点：</p>
+<p>（1）click事件在移动端同样可以使用，只是会有300ms的延迟；具体原因简单说就是浏览器分不清是click还是double tap造成。解决延迟的方案，使用fastclick.js（标准方案之一），代码段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  原理是：在touchEnd事件之后，立马实现一个合成的click事件并且阻止掉300ms以后那个真正的click事件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     FastClick.attach( <span class="built_in">document</span>.body );</span><br><span class="line">&#125;, <span class="literal">false</span> ); <span class="comment">//页面的click事件再也没有300ms延迟的烦恼</span></span><br></pre></td></tr></table></figure>
+<p>或者使用touchstart等内置touch事件代替click，或者使用第三方封装的touch模块提供的tap等方法来代替click事件。</p>
+<p>（2）移动端的手势模块，强大的比如<a href="http://hammerjs.github.io/" target="_blank" rel="noopener">hammer.js</a>，实现了绝大多数的手势事件；zepto的touch模块算是一个简单的手势库，鉴于很多网页的手势也不会很复杂，基本就是tap（轻触）、swipe（滑动）等，zepto的touch模块已经够用，不过会遭遇穿透的问题。所谓穿透问题，就是两个层，上面的层绑定的tap事件轻触以后消失，会触发下层的click的事件或者是a 元素的等的原生事件。</p>
+<p>说到穿透问题就引出了移动端的一个情况。在很多情况下，触摸事件和鼠标事件会同时被触发（目的是让没有对触摸设备优化的代码仍然可以在触摸设备上正常工作）。如果你使用了触摸事件，可以调用event.preventDefault()来阻止鼠标事件被触发，这里不得不提到event.preventDefault()只有在touchstart的时候才能比较有效的阻止click事件的发生，但同时又会引起不能触发scrolling滚动的问题，如下图。</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/click.png" alt="click事件被触发的各种情况"></p>
+<p>图7 click事件被触发的各种情况</p>
+<p>解决方案可以延迟dom层的消失，还有其他的一些方法，比如重写zepto的touch模块等，见聊聊touch事件<a href="https://github.com/lilyImage/sharing/issues/1" target="_blank" rel="noopener"> 聊聊touch模块 </a></p>
+<p>（3）用事件代理的方式绑定事件的时候，有些手机默认给出的触摸范围是在父元素的范围，无法定位到确定的元素上。可以利用CSS去掉浏览器原生的样式，再自定义样式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.logo&#123;</span><br><span class="line">     -webkit-tap-highlight-color: rgba(0,0,0,0);</span><br><span class="line">     -webkit-tap-highlight-color: transparent; /* For some Androids */ &#125;</span><br><span class="line">.logo:active&#123; -webkit-transform: scale3d(0.9, 0.9, 1);//需要自定义一个active的动作 &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"logo"</span> <span class="attr">href</span>=<span class="string">"javascript:void(0);"</span> <span class="attr">ontouchstart</span>=<span class="string">"return true;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>提醒一句，有时候带有浏览器原生的样式，能带给用户更好的交互感。</p>
+<h4 id="关于单页应用"><a href="#关于单页应用" class="headerlink" title="关于单页应用"></a>关于单页应用</h4><p>除了上面提到的布局、图片、文字、动画、事件，PC与移动的差异外。移动端出现了大量的单页应用。一方面因为PC上浏览器有很强的tab标签概念，在移动端，很多时候我们的网页是内嵌在webview中，用户更喜欢后退，而不是去选择tab标签；用单页构建应用会更接近原生的体验，从用户角度来说体验更佳，有更快的导航。另一方面单页应用还减少了带宽，降低了流量。需要的javascript文件只用在第一次的时候加载，服务端只用返回json数据，所有的页面html拼装工作都放到客户端来进行。</p>
+<p>单页应用对于前端工程师来说，其实是加大了开发难度的。因为前端同学需要从整体的架构上来把握，比如考虑单页应用框架、前端模板、UI库、模块化开发、测试等等问题。当然这些问题在非单页应用中也是会涉及的。移动端单页应用的一个特点是，需要考虑转场动画，转场就是从第一个页面转到第二个页面，相信转场动画的出现也是来自于移动端的交互方式。所以说不同的交互方式会导致我们开发方式的变化。不去讨论单页应用这个巨大的话题，就单单讲一讲转场这方面。核心思路：多个页面层叠加，利用css3的transition属性进行层之间的转化。如何来做呢？</p>
+<p>提供一种方法：每个单页层都利用position:absolute来固定，用hash标明不同的页面；单页之间切换的时候，利用transition来做切换动画。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*单页层代码片段：*/</span></span><br><span class="line"><span class="selector-tag">position</span><span class="selector-pseudo">:absolute</span>;<span class="selector-tag">left</span><span class="selector-pseudo">:0</span>;<span class="selector-tag">top</span><span class="selector-pseudo">:0</span>;<span class="selector-tag">right</span><span class="selector-pseudo">:0</span>;<span class="selector-tag">bottom</span><span class="selector-pseudo">:0</span>;</span><br><span class="line"><span class="selector-tag">width</span><span class="selector-pseudo">:100</span>%;<span class="selector-tag">height</span><span class="selector-pseudo">:100</span>%</span><br><span class="line"></span><br><span class="line"><span class="comment">/*切换动画(往左滑动100%，即该层整体往左滑动):*/</span></span><br><span class="line"><span class="selector-tag">-webkit-transform</span>: <span class="selector-tag">translate3d</span>(100%, 0, 0);</span><br><span class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">translate3d</span>(100%, 0, 0);</span><br></pre></td></tr></table></figure>
+<p>当然在做页面层之间切换的时候，也有很多种的动画样式，比如是“盖上去”，还是“推出去”等。不同的动画对应不同的css手段。这方面也有专门的文章来介绍，下面就用一个简单的多页面切换的例子来结束这部分吧。如下图所示是两个页面层切换的场景。切换的时候第二层往左滑动盖在了第一层的上面。滑动的触发可以通过手指的滑动动作或者点击某个按钮、区域等。</p>
+<p><img src="http://3gimg.qq.com/map_site_cms/dcfe/blog/slide.png" alt="页面层切换的一种场景"></p>
+<p>图8 页面层切换的一种场景</p>
+<p>下面提供了一个比较简单的切换页面层的例子，包括了html、css和JavaScript代码，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*JavaScript代码段：*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PageSwitcher</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> currentPage,</span><br><span class="line">        stateHistory = [];</span><br><span class="line">    <span class="keyword">this</span>.switchPage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> l = stateHistory.length,</span><br><span class="line">            state = <span class="built_in">window</span>.location.hash;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(state == stateHistory[l<span class="number">-2</span>])&#123;</span><br><span class="line">            page = currentPage.prev(<span class="string">'.page'</span>);</span><br><span class="line">            <span class="keyword">if</span>(page &amp;&amp; page.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                currentPage.attr(<span class="string">'class'</span>,<span class="string">'page transition right100'</span>);</span><br><span class="line">                currentPage = page;</span><br><span class="line">                stateHistory.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            page = currentPage.next(<span class="string">'.page'</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(page &amp;&amp; page.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                stateHistory.push(state);</span><br><span class="line">                page.attr(<span class="string">'class'</span>,<span class="string">'page transition center'</span>);</span><br><span class="line">                currentPage = page;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,  </span><br><span class="line">    <span class="keyword">this</span>.init = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">        currentPage = obj.curPage;</span><br><span class="line">        stateHistory.push(obj.curHash);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*css代码段：*/</span></span><br><span class="line"><span class="selector-id">#container</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;<span class="attribute">left</span>: <span class="number">0</span>;<span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">right</span>: <span class="number">0</span>;<span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.page</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.page</span><span class="selector-class">.center</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(0, 0, 0);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.page</span><span class="selector-class">.transition</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-transition-duration</span>: .<span class="number">25s</span>;</span><br><span class="line">    <span class="attribute">transition-duration</span>: .<span class="number">25s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.page</span><span class="selector-class">.right</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(100%, 0, 0);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.page</span><span class="selector-class">.left</span>&#123;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-100%, 0, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--html代码段：--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"current page center"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#page2"</span> <span class="attr">class</span>=<span class="string">"btn btn-next"</span>&gt;</span>page2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page2 page right"</span> <span class="attr">style</span>=<span class="string">"background:lightgreen"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#page1"</span>&gt;</span>back<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> pageSlider = <span class="keyword">new</span> PageSwitcher();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">	$(<span class="built_in">window</span>).on(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="undefined">        pageSlider.switchPage();</span></span><br><span class="line"><span class="undefined">    &#125;);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    pageSlider.init(&#123;<span class="attr">curPage</span> : $(<span class="string">'.current'</span>),<span class="attr">curHash</span>:<span class="string">'#page1'</span>&#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>本文从布局、图片、文字、动画、事件5个方面分别介绍了移动端与PC端的一些不同，并给出了一些在实际工作中常用方法的建议。最后从应用的层面上再一次地强调了移动端在用户交互上的改变，从而导致我们日常开发工作的改变。本文的内容可以算是移动端的基础入门，对其中某一方面感兴趣的都可以去做深入的研究，因为每一个分支在移动上都是一个全新的领域，需要我们去挖掘。前端开发作为一个端的开发分支，同样面临着跟其他客户端一样的问题，当我们的外部环境变化的时候，我们的技术储备，技术更新就需要更新换代。客户端开发遭遇了从PC客户端到Android等智能手机客户端的变迁，同样我们也是从PC时代步入移动时代。当我们在面临大的环境变革的时候，希望大家都能及时抓稳方向盘，积极地从内在的技术知识上进行变革，跟上这股浪潮而不是被它拍死在沙滩上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2016/02/03/移动web开发初级攻略/" data-id="cjhbpfqv000150x1poowjhewb" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2016/02/03/移动web开发初级攻略/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动web开发/">移动web开发</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/03/简单聊聊touch事件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          简单聊聊touch事件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/01/ngnix配置静态资源404问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">ngnix配置静态资源404问题</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

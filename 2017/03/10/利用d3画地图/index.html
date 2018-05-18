@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>利用d3画地图 | lucy Hao</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="其实这篇文章主要借鉴了文章Let’s make a map来画地图，就当是看一个翻译文章吧，不过我感觉会比原文简单很多！  首先明确几个问题：  这里画的是新加坡的地图以及新加坡所有的公交站点，原因是新加坡的数据在网上是公开的，易获取。后面会附上所有数据来源。 国内的Echarts其实在地图方面已经做的很领先了，提供了很多酷炫组件。但是如上一条，除了Echarts本身提供了地图数据，要再在地图的">
+<meta name="keywords" content="d3,map">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用d3画地图">
+<meta property="og:url" content="http://lucyhao.com/2017/03/10/利用d3画地图/index.html">
+<meta property="og:site_name" content="lucy Hao">
+<meta property="og:description" content="其实这篇文章主要借鉴了文章Let’s make a map来画地图，就当是看一个翻译文章吧，不过我感觉会比原文简单很多！  首先明确几个问题：  这里画的是新加坡的地图以及新加坡所有的公交站点，原因是新加坡的数据在网上是公开的，易获取。后面会附上所有数据来源。 国内的Echarts其实在地图方面已经做的很领先了，提供了很多酷炫组件。但是如上一条，除了Echarts本身提供了地图数据，要再在地图的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用d3画地图">
+<meta name="twitter:description" content="其实这篇文章主要借鉴了文章Let’s make a map来画地图，就当是看一个翻译文章吧，不过我感觉会比原文简单很多！  首先明确几个问题：  这里画的是新加坡的地图以及新加坡所有的公交站点，原因是新加坡的数据在网上是公开的，易获取。后面会附上所有数据来源。 国内的Echarts其实在地图方面已经做的很领先了，提供了很多酷炫组件。但是如上一条，除了Echarts本身提供了地图数据，要再在地图的">
+  
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+
+  
+  
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+
+      
+
+          
+          
+          <section id="main"><article id="post-利用d3画地图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用d3画地图
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/03/10/利用d3画地图/">
+      <time datetime="2017-03-10T14:11:48.000Z" itemprop="datePublished">2017-03-10</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/前端开发/可视化/">可视化</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>其实这篇文章主要借鉴了文章<a href="https://bost.ocks.org/mike/map/" target="_blank" rel="noopener">Let’s make a map</a>来画地图，就当是看一个翻译文章吧，不过我感觉会比原文简单很多！</p>
+</blockquote>
+<p>首先明确几个问题：</p>
+<ul>
+<li>这里画的是新加坡的地图以及新加坡所有的公交站点，原因是新加坡的数据在网上是公开的，易获取。后面会附上所有数据来源。</li>
+<li>国内的Echarts其实在地图方面已经做的很领先了，提供了很多酷炫组件。但是如上一条，除了Echarts本身提供了地图数据，要再在地图的基础上做一些其他的展示就比较困难，因为真实数据很难获取到。很多时候个人想拿数据做点研究工作，或者练手工作都苦于没有数据</li>
+</ul>
+<p>OK，这就开始画吧！</p>
+<h2 id="Step1-创建一个html文件"><a href="#Step1-创建一个html文件" class="headerlink" title="Step1: 创建一个html文件"></a>Step1: 创建一个html文件</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>your title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"//d3js.org/d3.v4.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"//d3js.org/topojson.v2.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">		<span class="comment">//...</span></span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>引入了两个文件，一个是d3，一个是topojson。其中<a href="https://github.com/topojson/topojson" target="_blank" rel="noopener">topojson</a>是对GeoJson的一种扩展。而<a href="http://geojson.org/" target="_blank" rel="noopener">eoJson</a>是一种对地理数据的编码格式。</p>
+<h2 id="Step2-画地图"><a href="#Step2-画地图" class="headerlink" title="Step2: 画地图"></a>Step2: 画地图</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> width = <span class="number">960</span>;</span><br><span class="line"><span class="keyword">var</span> height = <span class="number">600</span>;</span><br><span class="line"><span class="keyword">var</span> svg = d3.select(<span class="string">"svg"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1: make sg in the center (103.8°E 1.3°N)</span></span><br><span class="line"><span class="keyword">var</span> projection = d3.geoMercator()</span><br><span class="line">    .center([<span class="number">103.85</span>, <span class="number">1.3</span>])</span><br><span class="line">    .scale(<span class="number">100000</span>)</span><br><span class="line">    .translate([width / <span class="number">2</span>, height / <span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> path = d3.geoPath()</span><br><span class="line">    .projection(projection);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2: draw</span></span><br><span class="line">d3.json(<span class="string">"sg.json"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error, sg</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    svg.append(<span class="string">"g"</span>)</span><br><span class="line">        .selectAll(<span class="string">"path"</span>)</span><br><span class="line">        .data(topojson.feature(sg, sg.objects.sg).features)</span><br><span class="line">        .enter().append(<span class="string">"path"</span>)</span><br><span class="line">        .attr(<span class="string">"class"</span>,<span class="string">"map"</span>)</span><br><span class="line">        .attr(<span class="string">"d"</span>, path);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码有两处需要解释的。<br>第一处：首先地球是球体，是立体的，当我们要在二维平面上描述地图的时候，就需要做一个投影把立体的地图投影到二维平面上。投影很多种方法，得到的地图看到会不太一样。互联网上常见的地图都是做的墨卡托投影(mercator projection)。如上面代码所示，第一处代码的作用就是把新加坡放到中心，首先是做一个投影d3.geoMercator()(注意此函数是d3 v4版本的，v3版本的是d3.geo.mercator());因为新加坡的经纬度大概是是东经103.8度，北纬1.3度，所以设置中心点center();然后放大，是的，因为新加坡太小啦，不放大的话，根本看不到它的样子，scale()；最后移动到页面上svg的中心translate();</p>
+<p>第二处：画地图，其中sg.json是经过处理的新加坡地图数据(处理成topoJson格式)。原始数据是的GeoJson格式的，后面会附上所有数据来源。要处理GeoJson数据也是简单npm安装topoJson包,然后调用命令<a href="https://github.com/topojson/topojson-server/blob/master/README.md#geo2topo" target="_blank" rel="noopener">geo2topo</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install topoJson</span><br><span class="line">geo2topo old.json &gt; new.json</span><br></pre></td></tr></table></figure>
+<p>如果调用命令的时候，显示没有geo2topo命令，那npm的时候全局安装就好了。<br>如下图，我们的到了想要的地图。</p>
+<image width="600" alt="新加坡地图，不包含水域部分" src="http://blog-1255342807.cossgp.myqcloud.com/sg.png"></image>
+
+
+<h2 id="Step3-增加区域之间的边界"><a href="#Step3-增加区域之间的边界" class="headerlink" title="Step3: 增加区域之间的边界"></a>Step3: 增加区域之间的边界</h2><p>我们的数据中不是只有整个地图的边界数据，我们拿到的其实包括了新加坡每个区域的数据。就类似中国有好多个省组成，每个省之间有边界，我们也可以画出新加坡每个区域之间的边界。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.area-borders&#123;</span><br><span class="line">    fill: none;</span><br><span class="line">    stroke: #999;</span><br><span class="line">    stroke-dasharray: 2,2;</span><br><span class="line">    stroke-linejoin: round;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">svg.append(&quot;path&quot;)</span><br><span class="line">        .attr(&quot;class&quot;, &quot;area-borders&quot;)</span><br><span class="line">        .attr(&quot;d&quot;, path(topojson.mesh(sg, sg.objects.sg, function(a, b) &#123; return a !== b; &#125;)));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>如下图，得到带边界的地图</p>
+<image width="600" alt="带区域边界" src="http://blog-1255342807.cossgp.myqcloud.com/sg-area.png"></image>
+
+<h2 id="Step4-增加bus-stop的打点"><a href="#Step4-增加bus-stop的打点" class="headerlink" title="Step4: 增加bus stop的打点"></a>Step4: 增加bus stop的打点</h2><p>画出地图以后，总想在上面做点什么。结果查到了新加坡的公交数据，所以准备在地图上显示新加坡所有的公交站点的情况。看一下分布情况。新加坡总共有4853个公交，数据来源见下面。通过api，然后简单处理，得到如下这样的json数据</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="attr">"value"</span>:[&#123;<span class="attr">"BusStopCode"</span>:<span class="string">"01012"</span>,<span class="attr">"RoadName"</span>:<span class="string">"Victoria St"</span>,<span class="attr">"Description"</span>:<span class="string">"Hotel Grand Pacific"</span>,<span class="attr">"Latitude"</span>:<span class="number">1.29684825487647</span>,<span class="attr">"Longitude"</span>:<span class="number">103.85253591654006</span>&#125;,...]&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们就可以用经纬度在地图上打点了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">d3.json(<span class="string">"bus-stop-grab.json"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,busstop</span>)</span>&#123;</span><br><span class="line">        svg.selectAll(<span class="string">"circle"</span>)</span><br><span class="line">            .data(busstop.value).enter().append(<span class="string">"circle"</span>)</span><br><span class="line">            .attr(<span class="string">"class"</span>,<span class="string">"pin"</span>)</span><br><span class="line">            .attr(<span class="string">"r"</span>, <span class="number">1</span>)</span><br><span class="line">            .attr(<span class="string">"transform"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"translate("</span> + projection([</span><br><span class="line">                    d.Longitude,</span><br><span class="line">                    d.Latitude</span><br><span class="line">                ]) + <span class="string">")"</span>;</span><br><span class="line">          &#125;);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>得到如下的地图：</p>
+<image width="600" alt="带公交站点的地图" src="http://blog-1255342807.cossgp.myqcloud.com/sg-bus-stops.png"></image>
+
+<p>从新加坡的公交站点分布也能看出，在居民区密集分布，没有公交的地方恰好就是机场，蓄水区，军演区，化工区，附带一张新加坡重建局官网的2013城市规划建设图。</p>
+<image width="600" alt="城市规划建设图" src="http://blog-1255342807.cossgp.myqcloud.com/sg-land-use-plan.jpg"></image>
+
+
+<blockquote>
+<p>结论：新加坡这个城市，各种数据公开，太适合拿来做一些研究了。</p>
+</blockquote>
+<h2 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h2><ul>
+<li>新加坡地图数据：<a href="https://data.gov.sg/" target="_blank" rel="noopener">https://data.gov.sg/</a> 获取的是14年不带水域边界的数据(其实从这个网站也可以看出来，新加坡很多数据都是公开的，也有很多统计分析)</li>
+<li>新加坡公交数据：<a href="https://www.mytransport.sg/content/mytransport/home/dataMall.html" target="_blank" rel="noopener">https://www.mytransport.sg/content/mytransport/home/dataMall.html</a> 这里有新加坡所有的交通数据，不止是公交的，所以可以自行发挥做各种测试</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2017/03/10/利用d3画地图/" data-id="cjhbpfquv000r0x1pvcqkapxn" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2017/03/10/利用d3画地图/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d3/">d3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/map/">map</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/19/webpack2 vs webpack1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          webpack2 vs webpack1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/19/尝试写一下对象的序列化/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">尝试写一下对象的序列化</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 - 2018 lucy Hao<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
