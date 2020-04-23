@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>node的http处理过程 | lucy Hao</title>
+  <title>Node的http处理过程 | Hao Li</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，是用node的http模块，pipe不成功。  一： 首先要先了解node中http的处理过程，原文https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-tran">
+  <meta name="description" content="问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，使用node的http模块，pipe不成功。  一： 首先要先了解node中http的处理过程，原文https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-tran">
+<meta name="keywords" content="Node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="node的http处理过程">
+<meta property="og:title" content="Node的http处理过程">
 <meta property="og:url" content="http://lucyhao.com/2017/09/19/node的http处理过程/index.html">
-<meta property="og:site_name" content="lucy Hao">
-<meta property="og:description" content="问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，是用node的http模块，pipe不成功。  一： 首先要先了解node中http的处理过程，原文https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-tran">
+<meta property="og:site_name" content="Hao Li">
+<meta property="og:description" content="问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，使用node的http模块，pipe不成功。  一： 首先要先了解node中http的处理过程，原文https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-tran">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-08T06:15:28.000Z">
+<meta property="og:updated_time" content="2018-06-25T02:19:11.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="node的http处理过程">
-<meta name="twitter:description" content="问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，是用node的http模块，pipe不成功。  一： 首先要先了解node中http的处理过程，原文https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-tran">
+<meta name="twitter:title" content="Node的http处理过程">
+<meta name="twitter:description" content="问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，使用node的http模块，pipe不成功。  一： 首先要先了解node中http的处理过程，原文https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-tran">
   
+  
+    <link rel="icon" href="/favicon.ico">
   
   
  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
@@ -28,9 +31,23 @@
   
 
   
+<meta name="google-site-verification" content="google8e41bce292e344ec" />
+
 
   
+<meta name="baidu-site-verification" content="ZcgPOccVIX" />
+
   
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?91717996b56865d0169027a3e313b9eb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 
   
 </head>
@@ -41,11 +58,19 @@
   <div id="header-main" class="header-inner">
     <div class="header-outer">
       
-      <a href="/" id="logo"><span class="site-title">lucy Hao</span></a>
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://3gimg.qq.com/map_site_cms/dcfe/avator.jpg)"></i><span class="site-title">Hao Li</span></a>
       
       <div class="tools">
         <div class="contact">
          
+            
+            <a href="https://github.com/lucyhao" target="_blank" title="github"><i class="fa fa-github"></i></a>
+            
+            <a href="https://twitter.com/HaoLi_hl" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a>
+            
+            <a href="https://www.linkedin.com/in/li-hao-74581548?trk=hp-identity-name" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a>
+            
+            <a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a>
             
     
          </div>
@@ -58,6 +83,16 @@ function googleTranslateElementInit() {
 }
 </script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
       <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/demos">Projects</a>
+        
+          <a class="main-nav-link" href="/resume">Resume</a>
         
       </nav>
       
@@ -77,6 +112,16 @@ function googleTranslateElementInit() {
   <div id="main-nav-mobile" class="header-sub header-inner">
     <table class="menu outer">
       <tr>
+        
+          <td><a class="main-nav-link" href="/.">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">Tags</a></td>
+        
+          <td><a class="main-nav-link" href="/demos">Projects</a></td>
+        
+          <td><a class="main-nav-link" href="/resume">Resume</a></td>
         
         
         <!--
@@ -99,9 +144,69 @@ function googleTranslateElementInit() {
 
 
     <div class="outer">
-
       
+      
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/06/12/Node的fs模块/" class="title">Node的file模块</a></p>
+              <p class="item-date"><time datetime="2018-06-12T07:58:39.000Z" itemprop="datePublished">2018-06-12</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/05/28/Vue & React的一些不同(2)/" class="title">Vue &amp; React 的一些不同（2）</a></p>
+              <p class="item-date"><time datetime="2018-05-28T06:36:11.000Z" itemprop="datePublished">2018-05-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/04/13/Vue & React 的一些不同/" class="title">Vue &amp; React 的一些不同</a></p>
+              <p class="item-date"><time datetime="2018-04-13T04:34:02.000Z" itemprop="datePublished">2018-04-13</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a></p>
+              <p class="item-title"><a href="/2017/10/24/利用JavaScript获取图片的Exif信息/" class="title">利用JavaScript获取图片的Exif信息</a></p>
+              <p class="item-date"><time datetime="2017-10-24T07:48:06.000Z" itemprop="datePublished">2017-10-24</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2017/09/19/node的http处理过程/" class="title">Node的http处理过程</a></p>
+              <p class="item-date"><time datetime="2017-09-19T12:44:28.000Z" itemprop="datePublished">2017-09-19</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
           
           
           <section id="main"><article id="post-node的http处理过程" class="article article-type-post" itemscope itemprop="blogPost">
@@ -113,7 +218,7 @@ function googleTranslateElementInit() {
         
   
     <h1 class="article-title" itemprop="name">
-      node的http处理过程
+      Node的http处理过程
     </h1>
   
 
@@ -135,7 +240,7 @@ function googleTranslateElementInit() {
       
                 
         <blockquote>
-<p>问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，是用node的http模块，pipe不成功。</p>
+<p>问题： express，使用了中间件body-parser；在接收POST/PUT这类请求的时候，请求中有data数据，使用node的http模块，pipe不成功。</p>
 </blockquote>
 <p>一： 首先要先了解node中http的处理过程，原文<a href="https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-transaction。翻译过来的意思是这样的（非逐字翻译）" target="_blank" rel="noopener">https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#anatomy-of-an-http-transaction。翻译过来的意思是这样的（非逐字翻译）</a></p>
 <p>我们在node端做一个服务</p>
@@ -167,11 +272,13 @@ function googleTranslateElementInit() {
     </div>
     <footer class="article-footer">
     <!--
-      <a data-url="http://lucyhao.com/2017/09/19/node的http处理过程/" data-id="cjhbpfqup000f0x1pqck5q7nh" class="article-share-link">分享到</a>-->
+      <a data-url="http://lucyhao.com/2017/09/19/node的http处理过程/" data-id="ck9cm5zl9000quo1pdzec0y7a" class="article-share-link">分享到</a>-->
       
         <a href="http://lucyhao.com/2017/09/19/node的http处理过程/#disqus_thread" class="article-comment-link">评论</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
+
     </footer>
     
   </div>
@@ -210,6 +317,7 @@ function googleTranslateElementInit() {
 </section>
 
           
+          
 
       
 
@@ -221,7 +329,7 @@ function googleTranslateElementInit() {
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 - 2018 lucy Hao<br>
+      &copy; 2018 - 2020 Hao Li<br>
       
     </div>
   </div>
@@ -247,6 +355,9 @@ function googleTranslateElementInit() {
 
 
 
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 <script src="/js/script.js"></script>

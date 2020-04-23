@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue &amp; React 的一些不同（2） | Hao Li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Vue &amp;amp; React的sharing ppt  Vue的响应式原理Vue: Vue的内在，响应式原理部分，官方文档有提到  当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。   每个组件实例都有相应的 watcher 实例">
+<meta name="keywords" content="React,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue &amp; React 的一些不同（2）">
+<meta property="og:url" content="http://lucyhao.com/2018/05/28/Vue & React的一些不同(2)/index.html">
+<meta property="og:site_name" content="Hao Li">
+<meta property="og:description" content="Vue &amp;amp; React的sharing ppt  Vue的响应式原理Vue: Vue的内在，响应式原理部分，官方文档有提到  当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。   每个组件实例都有相应的 watcher 实例">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-20T02:00:32.860Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue &amp; React 的一些不同（2）">
+<meta name="twitter:description" content="Vue &amp;amp; React的sharing ppt  Vue的响应式原理Vue: Vue的内在，响应式原理部分，官方文档有提到  当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。   每个组件实例都有相应的 watcher 实例">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+<meta name="google-site-verification" content="google8e41bce292e344ec" />
+
+
+  
+<meta name="baidu-site-verification" content="ZcgPOccVIX" />
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?91717996b56865d0169027a3e313b9eb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://3gimg.qq.com/map_site_cms/dcfe/avator.jpg)"></i><span class="site-title">Hao Li</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+            <a href="https://github.com/lucyhao" target="_blank" title="github"><i class="fa fa-github"></i></a>
+            
+            <a href="https://twitter.com/HaoLi_hl" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a>
+            
+            <a href="https://www.linkedin.com/in/li-hao-74581548?trk=hp-identity-name" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a>
+            
+            <a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a>
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/demos">Projects</a>
+        
+          <a class="main-nav-link" href="/resume">Resume</a>
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">Tags</a></td>
+        
+          <td><a class="main-nav-link" href="/demos">Projects</a></td>
+        
+          <td><a class="main-nav-link" href="/resume">Resume</a></td>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+      
+      
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/06/12/Node的fs模块/" class="title">Node的file模块</a></p>
+              <p class="item-date"><time datetime="2018-06-12T07:58:39.000Z" itemprop="datePublished">2018-06-12</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/05/28/Vue & React的一些不同(2)/" class="title">Vue &amp; React 的一些不同（2）</a></p>
+              <p class="item-date"><time datetime="2018-05-28T06:36:11.000Z" itemprop="datePublished">2018-05-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/04/13/Vue & React 的一些不同/" class="title">Vue &amp; React 的一些不同</a></p>
+              <p class="item-date"><time datetime="2018-04-13T04:34:02.000Z" itemprop="datePublished">2018-04-13</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a></p>
+              <p class="item-title"><a href="/2017/10/24/利用JavaScript获取图片的Exif信息/" class="title">利用JavaScript获取图片的Exif信息</a></p>
+              <p class="item-date"><time datetime="2017-10-24T07:48:06.000Z" itemprop="datePublished">2017-10-24</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2017/09/19/node的http处理过程/" class="title">Node的http处理过程</a></p>
+              <p class="item-date"><time datetime="2017-09-19T12:44:28.000Z" itemprop="datePublished">2017-09-19</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+          
+          
+          <section id="main"><article id="post-Vue &amp; React的一些不同(2)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue &amp; React 的一些不同（2）
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2018/05/28/Vue & React的一些不同(2)/">
+      <time datetime="2018-05-28T06:36:11.000Z" itemprop="datePublished">2018-05-28</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p><a href="https://drive.google.com/drive/u/1/folders/1v0BU3x2V7HvvSYcp-KaarxJGv97MadlA" target="_blank" rel="noopener">Vue &amp; React</a>的sharing ppt</p>
+</blockquote>
+<h3 id="Vue的响应式原理"><a href="#Vue的响应式原理" class="headerlink" title="Vue的响应式原理"></a>Vue的响应式原理</h3><p>Vue:</p>
+<p>Vue的内在，响应式原理部分，官方文档有提到</p>
+<blockquote>
+<p>当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。</p>
+</blockquote>
+<blockquote>
+<p>每个组件实例都有相应的 watcher 实例对象，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。</p>
+</blockquote>
+<p>在Vue组件中，对于array和object, 有一些更新方式，不是响应式的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name :<span class="string">''</span>,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      array : [<span class="string">'1'</span>],</span><br><span class="line">      object : &#123;&#125;,</span><br><span class="line">      array1 : [&#123;<span class="attr">active</span>:<span class="literal">false</span>&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods : &#123;</span><br><span class="line">    update() &#123;</span><br><span class="line">      <span class="keyword">this</span>.array[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// 不是响应式的</span></span><br><span class="line">      <span class="keyword">this</span>.object.active = <span class="literal">false</span>; <span class="comment">// 不是响应式的</span></span><br><span class="line">      <span class="keyword">this</span>.array1[<span class="number">0</span>].active = <span class="literal">true</span>; <span class="comment">//是响应式的</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原因与Vue的实现方式相关。Vue对Object遍历它的每一项，用Object.defineProperty去设置get,set。而对于array, 重写;[‘push’,’pop’,’shift’,’unshift’,’splice’,’sort’,’reverse’]这几个array的方法，对其中的每一项增加watcher.</p>
+<p>所以对于object, 直接往里面添加属性，不是响应式的；对于array, 直接修改里面的值也不是响应式的；而array[{object}],这种object的每个属性都做了get,set；所以改变它是响应式的。</p>
+<p>在调试的时候，把对象console.log出来，看看有没有set, get就知道这个属性是否是响应式的。</p>
+<p>一个小例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;<span class="string">"name"</span>:<span class="string">"li"</span>&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"name"</span>, &#123;</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    get : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> value</span><br><span class="line">    &#125;,</span><br><span class="line">    set : <span class="function"><span class="keyword">function</span>(<span class="params">newVal</span>)</span>&#123;</span><br><span class="line">    	value = newVal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.name = <span class="string">"lili"</span>;</span><br><span class="line">obj.age = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">console出来的内容：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&#123;age:12&#125;</span></span><br><span class="line"><span class="comment">  age:12</span></span><br><span class="line"><span class="comment">  name:(...)    //"lili"</span></span><br><span class="line"><span class="comment">  get name : f ()</span></span><br><span class="line"><span class="comment">  set name : f (newVal)</span></span><br><span class="line"><span class="comment">  __proto__: Object</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>Vue的响应式原理部分，同时也是它的双向数据流的原理。而React的是单向数据流。在<a href="http://lucyhao.com/2018/04/13/Vue%20&amp;%20React%20%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%90%8C/">Vue &amp; React的一些不同</a>里面有提到</p>
+<h3 id="React新手的一种编码误区"><a href="#React新手的一种编码误区" class="headerlink" title="React新手的一种编码误区"></a>React新手的一种编码误区</h3><p>Dan(React之父)在他的twitter里面有写到<a href="(http://lucyhao.com/2018/04/13/Vue%20&amp;%20React%20%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%90%8C/">一些新手写React的思想</a>).</p>
+<ul>
+<li><p>如果你的components把接收到的props赋值给了state, 然后尝试通过接收到不同的props来改变state; 那么你就要好好想象这样做的必要性。是不是应该直接用props，把state给删除了。</p>
+</li>
+<li><p>还举了一个例子<colorpalette> 来说明，这个例子是很“稀有”的需要在组件内用state来接props的。</colorpalette></p>
+</li>
+<li><p>对很多React的新手来说，他们的想法是“我需要在组件内部使用一些数据，这些数据来自于外部（父元素），那么我需要copy这些数据到组件内部”。这种想法是不对的。应该把state提升到父组件里面去使用。<a href="https://reactjs.org/docs/lifting-state-up.html" target="_blank" rel="noopener">Lifting State Up - React</a></p>
+</li>
+</ul>
+<p>我觉得这种写React代码的方法不仅适用于React，同样也适用于Vue. 对于一个组件，如果它需要根据props来改变它的一些view，同时这个组件可能自己本身也会有一些操作来改变它的view， 那么最好的做法应该是组件接收props，用event来通知parent的props改变。</p>
+<p>example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      show : <span class="literal">true</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  changeShow(value)&#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">show</span>: value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Children1</span><br><span class="line">          show=&#123;<span class="keyword">this</span>.state.show&#125;</span><br><span class="line">          changeShow=&#123;<span class="keyword">this</span>.changeShow.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">class Children extends Component &#123;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  handleClose()&#123;</span></span><br><span class="line"><span class="regexp">    this.props.changeShow(false);</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    </span></span><br><span class="line"><span class="regexp">    let className = '';</span></span><br><span class="line"><span class="regexp">    if (this.props.show) &#123;</span></span><br><span class="line"><span class="regexp">      className = 'show';</span></span><br><span class="line"><span class="regexp">    &#125;else&#123;</span></span><br><span class="line"><span class="regexp">      className = 'hide'</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div className=&#123;className&#125;&gt;</span></span><br><span class="line"><span class="regexp">        children</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.handleClose.bind(this)&#125;&gt;close&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2018/05/28/Vue & React的一些不同(2)/" data-id="ck9cm5zkp0005uo1psr950wca" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2018/05/28/Vue & React的一些不同(2)/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/12/Node的fs模块/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Node的file模块
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/13/Vue & React 的一些不同/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Vue &amp; React 的一些不同</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 - 2020 Hao Li<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

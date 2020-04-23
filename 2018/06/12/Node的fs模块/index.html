@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node的file模块 | Hao Li</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="算是用NodeJS操作File的一个练手。Demo: https://github.com/lucyhao/demo-express-file后来看了一些别人的文章，发现自己的这个很单薄，还找了一个别人的图，感觉很好的列出来fs模块的API    读文件内容12345678910111213const fs = require(&apos;fs&apos;); //引入fs模块//filePath -&amp;gt; fi">
+<meta name="keywords" content="Node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node的file模块">
+<meta property="og:url" content="http://lucyhao.com/2018/06/12/Node的fs模块/index.html">
+<meta property="og:site_name" content="Hao Li">
+<meta property="og:description" content="算是用NodeJS操作File的一个练手。Demo: https://github.com/lucyhao/demo-express-file后来看了一些别人的文章，发现自己的这个很单薄，还找了一个别人的图，感觉很好的列出来fs模块的API    读文件内容12345678910111213const fs = require(&apos;fs&apos;); //引入fs模块//filePath -&amp;gt; fi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-20T08:50:07.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node的file模块">
+<meta name="twitter:description" content="算是用NodeJS操作File的一个练手。Demo: https://github.com/lucyhao/demo-express-file后来看了一些别人的文章，发现自己的这个很单薄，还找了一个别人的图，感觉很好的列出来fs模块的API    读文件内容12345678910111213const fs = require(&apos;fs&apos;); //引入fs模块//filePath -&amp;gt; fi">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+  
+<meta name="google-site-verification" content="google8e41bce292e344ec" />
+
+
+  
+<meta name="baidu-site-verification" content="ZcgPOccVIX" />
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?91717996b56865d0169027a3e313b9eb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="header-outer">
+      
+      <a href="/" id="logo"><i class="logo" style="background-image: url(http://3gimg.qq.com/map_site_cms/dcfe/avator.jpg)"></i><span class="site-title">Hao Li</span></a>
+      
+      <div class="tools">
+        <div class="contact">
+         
+            
+            <a href="https://github.com/lucyhao" target="_blank" title="github"><i class="fa fa-github"></i></a>
+            
+            <a href="https://twitter.com/HaoLi_hl" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a>
+            
+            <a href="https://www.linkedin.com/in/li-hao-74581548?trk=hp-identity-name" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a>
+            
+            <a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a>
+            
+    
+         </div>
+        <div id="google_translate_element"></div>
+      </div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-CN', includedLanguages: 'zh-CN,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false,multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/.">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/demos">Projects</a>
+        
+          <a class="main-nav-link" href="/resume">Resume</a>
+        
+      </nav>
+      
+      
+
+      <!--
+      <div id="search-form-wrap">
+        
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+        
+      </div>
+      -->
+
+    </div>
+  </div>
+
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+        
+          <td><a class="main-nav-link" href="/.">Home</a></td>
+        
+          <td><a class="main-nav-link" href="/archives">Archives</a></td>
+        
+          <td><a class="main-nav-link" href="/tags">Tags</a></td>
+        
+          <td><a class="main-nav-link" href="/demos">Projects</a></td>
+        
+          <td><a class="main-nav-link" href="/resume">Resume</a></td>
+        
+        
+        <!--
+        <td>
+          
+
+          
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://lucyhao.com"></form>
+          
+
+        </td>
+        -->
+
+
+      </tr>
+    </table>
+  </div>
+
+</header>
+
+
+    <div class="outer">
+      
+      
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/06/12/Node的fs模块/" class="title">Node的file模块</a></p>
+              <p class="item-date"><time datetime="2018-06-12T07:58:39.000Z" itemprop="datePublished">2018-06-12</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/05/28/Vue & React的一些不同(2)/" class="title">Vue &amp; React 的一些不同（2）</a></p>
+              <p class="item-date"><time datetime="2018-05-28T06:36:11.000Z" itemprop="datePublished">2018-05-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2018/04/13/Vue & React 的一些不同/" class="title">Vue &amp; React 的一些不同</a></p>
+              <p class="item-date"><time datetime="2018-04-13T04:34:02.000Z" itemprop="datePublished">2018-04-13</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/前端开发/">前端开发</a></p>
+              <p class="item-title"><a href="/2017/10/24/利用JavaScript获取图片的Exif信息/" class="title">利用JavaScript获取图片的Exif信息</a></p>
+              <p class="item-date"><time datetime="2017-10-24T07:48:06.000Z" itemprop="datePublished">2017-10-24</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"></p>
+              <p class="item-title"><a href="/2017/09/19/node的http处理过程/" class="title">Node的http处理过程</a></p>
+              <p class="item-date"><time datetime="2017-09-19T12:44:28.000Z" itemprop="datePublished">2017-09-19</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+          
+          
+          <section id="main"><article id="post-Node的fs模块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node的file模块
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2018/06/12/Node的fs模块/">
+      <time datetime="2018-06-12T07:58:39.000Z" itemprop="datePublished">2018-06-12</time>
+    </a>
+  </div>
+
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+                
+        <blockquote>
+<p>算是用NodeJS操作File的一个练手。Demo: <a href="https://github.com/lucyhao/demo-express-file" target="_blank" rel="noopener">https://github.com/lucyhao/demo-express-file</a><br>后来看了一些别人的文章，发现自己的这个很单薄，还找了一个别人的图，感觉很好的列出来fs模块的API</p>
+</blockquote>
+<image alt="node fs api" src="    http://blog-1255342807.file.myqcloud.com/node_fs.png"></image>
+
+<h3 id="读文件内容"><a href="#读文件内容" class="headerlink" title="读文件内容"></a>读文件内容</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>); <span class="comment">//引入fs模块</span></span><br><span class="line"><span class="comment">//filePath -&gt; files文件的路径</span></span><br><span class="line"><span class="keyword">let</span> rstream = fs.createReadStream(filePath, <span class="string">'utf8'</span>);</span><br><span class="line"><span class="comment">//rstream是一个可读流</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//异步</span></span><br><span class="line">fs.readFile(filePath, <span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//data 是一个buffer数据，读出来的文件内容会在内存中，所以对于大文件，不适合用这个方法</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//同步</span></span><br><span class="line"><span class="keyword">let</span> file = fs.readFileSync(filePath)</span><br></pre></td></tr></table></figure>
+<p>stream 与 buffer 的区别在于， buffer会把内容缓存在内存中，内存的大小是有限的，所以对于很大的文件，要注意有可能会导致内存放不下的情况。这个时候就要考虑用stream流的方式。结合网络请求，可以用pipe管道的方式，把读到的数据直接pipe给response。如果说用buffer，是先把内容读入到内存中，然后再发送给client。那么stream就是“数据流”，像“水”一样，从server流向client。</p>
+<p>ep:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//express router</span></span><br><span class="line">router.get(<span class="string">'/file/:name'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">let</span> rstream = fs.createReadStream(name, <span class="string">'utf8'</span>);</span><br><span class="line">    rstream.pipe(res);</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="写文件内容"><a href="#写文件内容" class="headerlink" title="写文件内容"></a>写文件内容</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> wstream = fs.createWriteStream(filePath, <span class="string">'utf8'</span>);</span><br><span class="line"><span class="comment">//wstream 是一个可写流</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//异步</span></span><br><span class="line">fs.writeFile(filePath, <span class="string">'data'</span>, (err) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'The file has been saved!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//同步</span></span><br><span class="line"><span class="keyword">let</span> file = fs.writeFileSync(filePath)</span><br></pre></td></tr></table></figure>
+<p>用stream创建的可写流，可以与ReadStream一起使用，可读流.pipe(可写流)。writeStream也可以用write()写内容，然后用end()结束。</p>
+<p>ep:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> rstream = fs.createReadStream(filePath, <span class="string">'utf8'</span>);</span><br><span class="line"><span class="keyword">let</span> wstream = fs.createWriteStream(filePath, <span class="string">'utf8'</span>);</span><br><span class="line">rstream.pipe(wstream);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> wstream = fs.createWriteStream(filePath, <span class="string">'utf8'</span>);</span><br><span class="line">wstream.write(data);</span><br><span class="line">wstream.end();</span><br></pre></td></tr></table></figure>
+<h3 id="读文件夹"><a href="#读文件夹" class="headerlink" title="读文件夹"></a>读文件夹</h3><p>确切说是读文件夹下面的文件名称. files是文件夹路径下面的文件的名称的array, 不包括’.’和’..’。 同样也是有同步的fs.readdirSync的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//filesDir -&gt; files文件夹的路径</span></span><br><span class="line">fs.readdir(filesDir, (err, files) =&gt; &#123;</span><br><span class="line"> </span><br><span class="line">    files.forEach(<span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// file name</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.unlink(filePath, (err) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a>创建文件夹</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//异步</span></span><br><span class="line">fs.mkdir(filesDir, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//同步</span></span><br><span class="line">fs.mkdirSync(filesDir);</span><br></pre></td></tr></table></figure>
+<p>当然所有的接口都可以在Node的API文档里面查到，关于fs模块，最应该搞清楚应该就是stream这种数据流了。<br>用一张别人的图<a href="https://medium.freecodecamp.org/node-js-streams-everything-you-need-to-know-c9141306be93" target="_blank" rel="noopener">原文</a>。列举了Node的哪些module是stream的。</p>
+<image alt="node module的stream流模块" src="https://cdn-images-1.medium.com/max/1600/1*lhOvZiDrVbzF8_l8QX3ACw.png"></image>
+
+<p>HTTP reponses &amp; HTTP request都是stream的。突然就跟之前的文章有了联系<a href="http://lucyhao.com/2017/09/19/node%E7%9A%84http%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/">Node的http处理过程</a></p>
+<p>所以在express中，如果不用中间价，接到的request的data就是stream。我们处理它们的时候，就要使用到事件。<br>所有的stream都是EventEmitter（还没学习，简单理解就是stream都有很多事件来处理）的实例。</p>
+<p>一个例子，处理http request,把数据写到文件中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//express router</span></span><br><span class="line">router.put(<span class="string">'/file/:name'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">''</span>;</span><br><span class="line">    req.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;</span><br><span class="line">        body += chunk; <span class="comment">//stream的数据是一块chunk一块chunk的</span></span><br><span class="line">    &#125;);</span><br><span class="line">    req.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'error'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    req.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> wstream = fs.createWriteStream(filepath, <span class="string">'utf8'</span>);</span><br><span class="line">        wstream.write(body);</span><br><span class="line">        wstream.end();</span><br><span class="line">        res.json(&#123;<span class="string">'success'</span> : <span class="string">'already updated file'</span>&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+    <!--
+      <a data-url="http://lucyhao.com/2018/06/12/Node的fs模块/" data-id="ck9cm5zkf0000uo1puttf0h5q" class="article-share-link">分享到</a>-->
+      
+        <a href="http://lucyhao.com/2018/06/12/Node的fs模块/#disqus_thread" class="article-comment-link">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
+
+    </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/28/Vue & React的一些不同(2)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Vue &amp; React 的一些不同（2）</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+          
+          
+
+      
+
+     
+     
+    </div>
+
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 - 2020 Hao Li<br>
+      
+    </div>
+  </div>
+</footer>
+    
+
+<script>
+  var disqus_shortname = 'lucyhaocom';
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
